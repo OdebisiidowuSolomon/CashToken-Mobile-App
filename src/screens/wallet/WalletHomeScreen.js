@@ -33,7 +33,7 @@ const QLinks = [
     id: 2,
     image: require('../../images/upload.png'),
     text: 'Withdraw Reward',
-    route: '',
+    route: 'WithdrawReward',
   },
   {
     id: 3,

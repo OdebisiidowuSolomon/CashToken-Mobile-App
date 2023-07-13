@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 // AirtimePurchase.js
 
 import React, {useEffect, useRef, useState} from 'react';
@@ -30,8 +31,19 @@ const NetworkProviderData = [
 
 const width = Dimensions.get('screen').width;
 
-const AirtimePurchase = ({navigation: {navigate}, route}) => {
+const AirtimePurchase = ({navigation, route}) => {
   const [provider, setProvider] = useState();
+  const [showWithdrawReward, setShowWithdrawReward] = useState(false);
+
+  const {navigate} = navigation;
+
+  console.log(route);
+
+  useEffect(() => {
+    if (route.params.msg === 'WithdrawReward') {
+      setShowWithdrawReward(true);
+    }
+  }, [route]);
 
   const andriodPromptRef = useRef();
   const confirmationModalRef = useRef();
@@ -136,10 +148,17 @@ const AirtimePurchase = ({navigation: {navigate}, route}) => {
         />
       </View>
 
-      <Button
-        text={'Proceed'}
-        onPress={() => andriodPromptRef.current.setVisible(true)}
-      />
+      {showWithdrawReward ? (
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <Button text={'Back'} onPress={() => navigation.pop()} />
+          <Button text={'Next'} onPress={() => navigate('Summary')} />
+        </View>
+      ) : (
+        <Button
+          text={'Proceed'}
+          onPress={() => andriodPromptRef.current.setVisible(true)}
+        />
+      )}
 
       <AndriodPrompt
         ref={andriodPromptRef}

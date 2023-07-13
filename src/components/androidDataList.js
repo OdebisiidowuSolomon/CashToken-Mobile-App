@@ -17,14 +17,14 @@ const AndroidDataList = ({setValue, key, value, data}, ref) => {
           }, 400);
         }}
         value={value}>
-        {data.map(item => (
+        {data.map((item,_) => (
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
               marginTop: 5,
             }}
-            key={item.name}>
+            key={_}>
             <Image
               style={{flex: 0.1, objectFit: 'contain'}}
               source={require('../images/Ikeja.png')}
