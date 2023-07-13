@@ -40,6 +40,7 @@ import Failed from './src/screens/Failed';
 import DataPurchase from './src/screens/BuyData/DataPurchase';
 import SelectDataPlan from './src/screens/BuyData/SelectDataPlan';
 import WalletHomeScreen from './src/screens/wallet/WalletHomeScreen';
+import WithdrawReward from './src/screens/wallet/WithdrawReward';
 
 const Tab = createBottomTabNavigator();
 
@@ -746,7 +747,55 @@ const HomeNavigator = () => {
           },
         })}
       />
+      <Stack.Screen
+        name="WithdrawReward"
+        component={WithdrawReward}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          header: ({navigation}) => {
+            return (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 18,
+                  paddingTop: 25,
+                  paddingBottom: 15,
+                  backgroundColor: COLORS.white,
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    e.navigation.goBack();
+                  }}
+                  style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      fontWeight: '500',
+                    }}>
+                    Withdraw Reward
+                  </Text>
+                </TouchableOpacity>
 
+                <Text style={{color: COLORS.secondary}}>History</Text>
+              </View>
+            );
+          },
+        })}
+      />
+
+      {/* <Stack.Screen name="" component={Failed} /> */}
       <Stack.Screen name="Nested" component={NestedScreen} />
     </Stack.Navigator>
   );

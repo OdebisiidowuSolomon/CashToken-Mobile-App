@@ -1,26 +1,17 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, Dimensions, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {COLORS} from '../libs/Constants';
 
 const {width, height} = Dimensions.get('screen');
 
-const QuickLink = ({item, navigate}) => {
+const QuickLink = ({item, navigate, route}) => {
   const handlePress = () => {
-    if (item.id === 1) {
-      navigate('RecipientSelection');
-    }
-    if (item.id === 2) {
-      navigate('AirtimePurchase');
-    }
-    if (item.id === 3) {
-      navigate('ElectricityPurchase');
-    }
-    if (item.id === 4) {
-      navigate('CablePurchase');
-    }
-    if (item.id === 5) {
-      navigate('DataPurchase');
+    if (item.route) {
+      navigate(item.route);
+    } else {
+      return;
     }
   };
 

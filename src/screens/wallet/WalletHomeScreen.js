@@ -27,17 +27,27 @@ const QLinks = [
     id: 1,
     image: require('../../images/CashToken-Logo-2.png'),
     text: 'Gift CashToken',
+    route: '',
   },
-  {id: 2, image: require('../../images/upload.png'), text: 'Withdraw Reward'},
+  {
+    id: 2,
+    image: require('../../images/upload.png'),
+    text: 'Withdraw Reward',
+    route: '',
+  },
   {
     id: 3,
     image: require('../../images/SwitchHorizontalOutline.png'),
     text: 'Transfer',
+
+    route: '',
   },
   {
     id: 4,
     image: require('../../images/qr_code_scanner.png'),
     text: 'Scan',
+
+    route: '',
   },
 ];
 
@@ -73,8 +83,6 @@ const WalletHomeScreen = ({navigation: {navigate}, route}) => {
       <Transaction />
       <Transaction />
       <Transaction />
-
-
     </ScrollView>
   );
 };
