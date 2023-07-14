@@ -17,6 +17,7 @@ import {COLORS} from '../../libs/Constants';
 import HeaderText from '../../components/HeaderText';
 import SelectableCard from '../../components/SelectableCard';
 import ContactSearchInput from '../../components/ContactSearchInput';
+import Spinner from '../../components/Spinner';
 
 const Contacts = ({navigation: {navigate}, route}) => {
   const [contacts, setContacts] = useState(null);
@@ -93,110 +94,107 @@ const Contacts = ({navigation: {navigate}, route}) => {
         </View>
       )}
 
-      <View>
-        {!contacts && alphaSets && (
-          <View>
-            <Text>Loading</Text>
-          </View>
-        )}
-      </View>
 
       <View>
-        {alphaSets
-          ? alphaSets.map((item, _) => {
-              return (
-                <View key={_}>
-                  <Text
-                    style={{
-                      backgroundColor: COLORS.lightBorderColor,
-                      paddingVertical: 7,
-                      paddingHorizontal: 18,
-                    }}>
-                    {item}
-                  </Text>
-                  <View style={{paddingHorizontal: 18, marginBottom: 15}}>
-                    {contactx &&
-                      contactx
-                        .filter(
-                          ({name, phoneNumber}) =>
-                            name?.startsWith(item) && phoneNumber,
-                        )
-                        .map(({name, phoneNumber, phoneNumber2}, _) => {
-                          return (
-                            <SelectableCard
-                              key={_}
-                              image={require('../../images/Recipient_icon.png')}
-                              showLeftIcon={false}
-                              title={name}
-                              subtitle={phoneNumber}
-                              onPress={() => {}}
-                              imageStyle={{
-                                borderRadius: 50,
-                                backgroundColor: COLORS.lightBorderColor,
-                              }}
-                              leftIcon={
-                                <TouchableOpacity
-                                  style={{
-                                    marginLeft: 'auto',
-                                    padding: 5,
-                                    paddingHorizontal: 13,
-                                    borderRadius: 10,
-                                    borderWidth: 1,
-                                    borderColor: COLORS.secondary,
-                                  }}
-                                  onPress={() => navigate('Quantity')}>
-                                  <Text
-                                    style={{
-                                      fontSize: 15,
-                                      color: COLORS.secondary,
-                                    }}>
-                                    Gift
-                                  </Text>
-                                </TouchableOpacity>
-                              }
-                            />
-                          );
-                        })}
-                  </View>
-                </View>
-              );
-            })
-          : contactx?.map(({name, phoneNumber, phoneNumber2}, _) => {
-              return (
-                <SelectableCard
-                  key={_}
-                  image={require('../../images/Recipient_icon.png')}
-                  showLeftIcon={false}
-                  title={name}
-                  subtitle={phoneNumber}
-                  onPress={() => {}}
-                  imageStyle={{
-                    borderRadius: 50,
+        {!contacts ? (
+          <Spinner />
+        ) : alphaSets ? (
+          alphaSets.map((item, _) => {
+            return (
+              <View key={_}>
+                <Text
+                  style={{
                     backgroundColor: COLORS.lightBorderColor,
-                  }}
-                  leftIcon={
-                    <TouchableOpacity
+                    paddingVertical: 7,
+                    paddingHorizontal: 18,
+                  }}>
+                  {item}
+                </Text>
+                <View style={{paddingHorizontal: 18, marginBottom: 15}}>
+                  {contactx &&
+                    contactx
+                      .filter(
+                        ({name, phoneNumber}) =>
+                          name?.startsWith(item) && phoneNumber,
+                      )
+                      .map(({name, phoneNumber, phoneNumber2}, _) => {
+                        return (
+                          <SelectableCard
+                            key={_}
+                            image={require('../../images/Recipient_icon.png')}
+                            showLeftIcon={false}
+                            title={name}
+                            subtitle={phoneNumber}
+                            onPress={() => {}}
+                            imageStyle={{
+                              borderRadius: 50,
+                              backgroundColor: COLORS.lightBorderColor,
+                            }}
+                            leftIcon={
+                              <TouchableOpacity
+                                style={{
+                                  marginLeft: 'auto',
+                                  padding: 5,
+                                  paddingHorizontal: 13,
+                                  borderRadius: 10,
+                                  borderWidth: 1,
+                                  borderColor: COLORS.secondary,
+                                }}
+                                onPress={() => navigate('Quantity')}>
+                                <Text
+                                  style={{
+                                    fontSize: 15,
+                                    color: COLORS.secondary,
+                                  }}>
+                                  Gift
+                                </Text>
+                              </TouchableOpacity>
+                            }
+                          />
+                        );
+                      })}
+                </View>
+              </View>
+            );
+          })
+        ) : (
+          contactx?.map(({name, phoneNumber, phoneNumber2}, _) => {
+            return (
+              <SelectableCard
+                key={_}
+                image={require('../../images/Recipient_icon.png')}
+                showLeftIcon={false}
+                title={name}
+                subtitle={phoneNumber}
+                onPress={() => {}}
+                imageStyle={{
+                  borderRadius: 50,
+                  backgroundColor: COLORS.lightBorderColor,
+                }}
+                leftIcon={
+                  <TouchableOpacity
+                    style={{
+                      marginLeft: 'auto',
+                      padding: 5,
+                      paddingHorizontal: 13,
+                      borderRadius: 10,
+                      borderWidth: 1,
+                      borderColor: COLORS.secondary,
+                    }}
+                    onPress={() => navigate('Quantity')}>
+                    <Text
                       style={{
-                        marginLeft: 'auto',
-                        padding: 5,
-                        paddingHorizontal: 13,
-                        borderRadius: 10,
-                        borderWidth: 1,
-                        borderColor: COLORS.secondary,
-                      }}
-                      onPress={() => navigate('Quantity')}>
-                      <Text
-                        style={{
-                          fontSize: 15,
-                          color: COLORS.secondary,
-                        }}>
-                        Gift
-                      </Text>
-                    </TouchableOpacity>
-                  }
-                />
-              );
-            })}
+                        fontSize: 15,
+                        color: COLORS.secondary,
+                      }}>
+                      Gift
+                    </Text>
+                  </TouchableOpacity>
+                }
+              />
+            );
+          })
+        )}
       </View>
     </ScrollView>
   );

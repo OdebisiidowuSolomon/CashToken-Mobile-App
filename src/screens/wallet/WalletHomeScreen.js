@@ -8,6 +8,7 @@ import {COLORS} from '../../libs/Constants';
 import HeaderText from '../../components/HeaderText';
 import CustomSlide from '../../components/customSlide';
 import QuickLink from '../../components/QuickLink';
+import TransactionItem from '../../components/TransactionItem';
 
 const slides = [
   {
@@ -39,14 +40,12 @@ const QLinks = [
     id: 3,
     image: require('../../images/SwitchHorizontalOutline.png'),
     text: 'Transfer',
-
-    route: '',
+    route: 'TransferReward',
   },
   {
     id: 4,
     image: require('../../images/qr_code_scanner.png'),
     text: 'Scan',
-
     route: '',
   },
 ];
@@ -63,7 +62,7 @@ const WalletHomeScreen = ({navigation: {navigate}, route}) => {
       <View
         style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
         {QLinks.map(item => {
-          return <QuickLink item={item} navigate={navigate} />;
+          return <QuickLink key={item.id} item={item} navigate={navigate} />;
         })}
       </View>
 
@@ -80,9 +79,9 @@ const WalletHomeScreen = ({navigation: {navigate}, route}) => {
         <Text style={{color: COLORS.secondary}}>See All</Text>
       </View>
 
-      <Transaction />
-      <Transaction />
-      <Transaction />
+      <TransactionItem />
+      <TransactionItem />
+      <TransactionItem />
     </ScrollView>
   );
 };
@@ -95,37 +94,3 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
 });
-
-const Transaction = () => {
-  return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingHorizontal: 18,
-        paddingTop: 15,
-      }}>
-      <View style={{flex: 0.15}}>
-        <Image
-          style={{width: 40, height: 40}}
-          source={require('../../images/Mtn_logo.png')}
-        />
-      </View>
-      <View style={{flex: 0.85}}>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={{color: COLORS.black}}>Airtime Top up</Text>
-          <Text style={{color: COLORS.black}}>N2,000</Text>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 5,
-          }}>
-          <Text style={{fontSize: 12}}>2 CashTokens</Text>
-          <Text style={{fontSize: 12}}>1:30, Feb 20, 2023</Text>
-        </View>
-      </View>
-    </View>
-  );
-};

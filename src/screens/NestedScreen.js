@@ -6,7 +6,9 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../libs/Constants';
 
-const NestedScreen = ({navigation:{navigate},route}) => {
+const NestedScreen = ({navigation, route}) => {
+  const {navigate} = navigation;
+
   return (
     <View style={styles.screen}>
       <Text style={styles.text}>Hello</Text>

@@ -25,9 +25,10 @@ const TabUI = props => {
           style={[styles.tabItem, activeTab === 'Tab 1' && styles.activeTab]}
           onPress={() => handleTabPress('Tab 1')}>
           <Text
-            style={
-              styles.tabText && activeTab === 'Tab 1' && {color: COLORS.primary}
-            }>
+            style={[
+              styles.tabText,
+              activeTab === 'Tab 1' && {color: COLORS.primary},
+            ]}>
             Recent Beneficiary
           </Text>
         </TouchableOpacity>
@@ -36,8 +37,8 @@ const TabUI = props => {
           onPress={() => handleTabPress('Tab 2')}>
           <Text
             style={[
-              styles.tabText &&
-                activeTab === 'Tab 2' && {color: COLORS.primary},
+              styles.tabText,
+              activeTab === 'Tab 2' && {color: COLORS.primary},
             ]}>
             Saved Beneficiary
           </Text>

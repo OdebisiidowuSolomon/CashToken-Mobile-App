@@ -13,18 +13,22 @@ const SelectableCard = ({
   showLeftIcon = true,
   imageStyle,
   leftIcon,
+  customStyle,
 }) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginTop: 15,
-          backgroundColor: COLORS.white,
-          padding: 11,
-          borderRadius: 8,
-        }}>
+        style={[
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: 15,
+            backgroundColor: COLORS.white,
+            padding: 11,
+            borderRadius: 8,
+          },
+          {...customStyle},
+        ]}>
         <View
           style={[
             {
@@ -52,7 +56,9 @@ const SelectableCard = ({
             }}>
             {title}
           </Text>
-          <Text style={{fontSize: 12, marginTop: 3}}>{subtitle}</Text>
+          {subtitle && (
+            <Text style={{fontSize: 12, marginTop: 3,color:COLORS.secondaryText}}>{subtitle}</Text>
+          )}
         </View>
         {showLeftIcon ? (
           <View style={{marginLeft: 'auto'}}>

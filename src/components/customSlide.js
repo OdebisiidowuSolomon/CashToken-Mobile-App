@@ -61,9 +61,9 @@ const Slide = ({item: {id, title, subtitle}, showEllipse}) => {
         style={{
           backgroundColor: COLORS.white,
           padding: 7,
-          borderRadius: 8,
+          borderRadius: 8,color:COLORS.secondaryText
         }}>
-        <Text style={{fontSize: 12}}>{subtitle}</Text>
+        <Text style={{fontSize: 12,color:COLORS.secondaryText}}>{subtitle}</Text>
       </View>
       {id === '1' && showEllipse && (
         <>

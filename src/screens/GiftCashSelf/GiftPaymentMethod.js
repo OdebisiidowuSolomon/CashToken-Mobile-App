@@ -166,7 +166,7 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
             source={require('../../images/CTR-1.png')}
           />
           <View style={{alignItems: 'flex-end'}}>
-            <Text>Tina Anya</Text>
+            <Text style={{color: COLORS.secondaryText}}>Tina Anya</Text>
             <View style={{flexDirection: 'row', marginTop: 5}}>
               <Text>Pay:</Text>
               <Text style={{color: COLORS.black, marginLeft: 5}}>
@@ -187,8 +187,10 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
               borderRadius: 5,
               borderColor: COLORS.dividers,
               padding: 10,
+              color: COLORS.black,
             }}
             placeholder="Card Number"
+            placeholderTextColor={COLORS.secondaryText}
           />
           <View style={{flexDirection: 'row', marginTop: 30}}>
             <TextInput
@@ -199,8 +201,10 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
                 padding: 10,
                 flex: 4,
                 marginRight: 15,
+                color: COLORS.black,
               }}
               placeholder="Card Expiry"
+              placeholderTextColor={COLORS.secondaryText}
             />
             <TextInput
               style={{
@@ -209,8 +213,10 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
                 borderColor: COLORS.dividers,
                 padding: 10,
                 flex: 4,
+                color: COLORS.black,
               }}
               placeholder="CVV"
+              placeholderTextColor={COLORS.secondaryText}
             />
           </View>
         </View>
@@ -246,7 +252,9 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
           },
         ]}>
         <View>
-          <Text style={{fontSize: 13}}>You Pay</Text>
+          <Text style={{fontSize: 13, color: COLORS.secondaryText}}>
+            You Pay
+          </Text>
           <Text style={{color: COLORS.black, marginTop: 10}}>N5,000.00</Text>
         </View>
         <Button
@@ -276,9 +284,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
+    right: 0,
     width: Dimensions.get('window').width,
     backgroundColor: COLORS.white,
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+    padding: 15,
   },
 });

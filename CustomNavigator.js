@@ -41,6 +41,18 @@ import DataPurchase from './src/screens/BuyData/DataPurchase';
 import SelectDataPlan from './src/screens/BuyData/SelectDataPlan';
 import WalletHomeScreen from './src/screens/wallet/WalletHomeScreen';
 import WithdrawReward from './src/screens/wallet/WithdrawReward';
+import WithdrawRewardBank from './src/screens/wallet/WithdrawRewardBank';
+import BankList from './src/screens/wallet/BankList';
+import MoreIndex from './src/screens/More/MoreIndex';
+import SupportCenter from './src/screens/More/SupportCenter';
+import ReferralIndex from './src/screens/Referral/ReferralIndex';
+import ReferralHistory from './src/screens/Referral/ReferralHistory';
+import TransactionHistory from './src/screens/TransactionHistory/TransactionHistoryIndex';
+import TransactionDetails from './src/screens/TransactionHistory/TransactionDetails';
+import Utilities from './src/screens/utility/Utilities';
+import TransferReward from './src/screens/TransferReward/TransferRewardIndex';
+import Settings from './src/screens/Settings/SettingsIndex';
+import ChangePassword from './src/screens/Settings/ChangePassword';
 
 const Tab = createBottomTabNavigator();
 
@@ -98,6 +110,7 @@ const FirstScreenNavigator = () => {
       />
       <Tab.Screen
         options={{
+          headerShown: false,
           tabBarLabel: 'Utilities',
           tabBarIcon: ({color, focused, size}) => (
             <View
@@ -112,7 +125,7 @@ const FirstScreenNavigator = () => {
           ),
         }}
         name="Utilities"
-        component={MyScreen}
+        component={Utilities}
       />
       <Tab.Screen
         options={{
@@ -134,6 +147,7 @@ const FirstScreenNavigator = () => {
       />
       <Tab.Screen
         options={{
+          headerShown: false,
           tabBarLabel: 'More',
           tabBarIcon: ({color, focused, size}) => (
             <View
@@ -148,7 +162,7 @@ const FirstScreenNavigator = () => {
           ),
         }}
         name="More"
-        component={MyScreen}
+        component={MoreIndex}
       />
     </Tab.Navigator>
   );
@@ -507,7 +521,11 @@ const HomeNavigator = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.secondary}}>History</Text>
+                <Text
+                  style={{color: COLORS.secondary}}
+                  onPress={() => navigation.navigate('TransactionHistory')}>
+                  History
+                </Text>
               </View>
             );
           },
@@ -554,7 +572,11 @@ const HomeNavigator = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.secondary}}>History</Text>
+                <Text
+                  style={{color: COLORS.secondary}}
+                  onPress={() => navigation.navigate('TransactionHistory')}>
+                  History
+                </Text>
               </View>
             );
           },
@@ -647,7 +669,11 @@ const HomeNavigator = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.secondary}}>History</Text>
+                <Text
+                  style={{color: COLORS.secondary}}
+                  onPress={() => navigation.navigate('TransactionHistory')}>
+                  History
+                </Text>
               </View>
             );
           },
@@ -694,7 +720,11 @@ const HomeNavigator = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.secondary}}>History</Text>
+                <Text
+                  style={{color: COLORS.secondary}}
+                  onPress={() => navigation.navigate('TransactionHistory')}>
+                  History
+                </Text>
               </View>
             );
           },
@@ -741,7 +771,11 @@ const HomeNavigator = () => {
                   </Text>
                 </TouchableOpacity>
 
-                <Text style={{color: COLORS.secondary}}>History</Text>
+                <Text
+                  onPress={() => navigation.navigate('TransactionHistory')}
+                  style={{color: COLORS.secondary}}>
+                  History
+                </Text>
               </View>
             );
           },
@@ -787,9 +821,363 @@ const HomeNavigator = () => {
                     Withdraw Reward
                   </Text>
                 </TouchableOpacity>
-
-                <Text style={{color: COLORS.secondary}}>History</Text>
               </View>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="WithdrawRewardBank"
+        component={WithdrawRewardBank}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          header: ({navigation}) => {
+            return (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 18,
+                  paddingTop: 25,
+                  paddingBottom: 15,
+                  backgroundColor: COLORS.white,
+                  alignItems: 'center',
+                }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    e.navigation.goBack();
+                  }}
+                  style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      fontWeight: '500',
+                    }}>
+                    Withdraw Reward
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="BankList"
+        component={BankList}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          header: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}
+                style={{padding: 15, backgroundColor: COLORS.white}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <MatIcon
+                    name={'close'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: '35%',
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Bank
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="SupportCenter"
+        component={SupportCenter}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.lightBorderColor},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Support Center
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="ReferralIndex"
+        component={ReferralIndex}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          header: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}
+                style={{padding: 15, backgroundColor: COLORS.white}}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <MatIcon
+                    name={'close'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="ReferralHistory"
+        component={ReferralHistory}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Referral History
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="TransactionHistory"
+        component={TransactionHistory}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Transaction History
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+      <Stack.Screen
+        name="TransactionDetails"
+        component={TransactionDetails}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.siteBackground},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Transaction Details
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="TransferReward"
+        component={TransferReward}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Transfer Reward
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.siteBackground},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Settings
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={e => ({
+          title: '',
+          headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.white},
+          headerTintColor: COLORS.secondary,
+          headerLeft: ({tintColor}) => {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <OctIcon
+                    name={'arrow-left'}
+                    size={25}
+                    style={{marginTop: 4.5, color: COLORS.black}}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: COLORS.black,
+                      textAlign: 'center',
+                    }}>
+                    Security
+                  </Text>
+                </View>
+              </TouchableOpacity>
             );
           },
         })}

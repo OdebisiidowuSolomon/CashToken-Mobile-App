@@ -22,6 +22,8 @@ const ContactSearchInput = ({search, handleTextChange,placeholder}, ref) => {
         placeholder={placeholder}
         value={search}
         onChangeText={handleTextChange}
+        style={{color:COLORS.secondaryText}}
+        placeholderTextColor={COLORS.secondaryText}
       />
     </View>
   );

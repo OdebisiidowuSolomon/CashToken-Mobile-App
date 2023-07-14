@@ -46,6 +46,7 @@ const Quantity = ({navigation: {navigate}, route}) => {
             backgroundColor: COLORS.lightBorderColor,
             paddingLeft: 17,
             borderRadius: 6,
+            color: COLORS.black,
           }}
           placeholder="CashToken: Enter Amount"
           placeholderTextColor={COLORS.default}
@@ -73,6 +74,7 @@ const Quantity = ({navigation: {navigate}, route}) => {
               backgroundColor: COLORS.lightBorderColor,
               paddingLeft: 17,
               borderRadius: 6,
+              color:COLORS.black
             }}
             placeholder="00.00"
             placeholderTextColor={COLORS.black}

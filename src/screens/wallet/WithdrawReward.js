@@ -25,18 +25,28 @@ const methods = [
 
 const wallets = [{name: 'Reward Wallet'}];
 
-const WithdrawReward = ({navigation: {navigate}, route}) => {
-  const [method, setMethod] = useState();
-  const [wallet, setWallet] = useState();
+const WithdrawReward = ({navigation, route}) => {
+  const {navigate} = navigation;
+  const [method, setMethod] = useState(null);
+  const [wallet, setWallet] = useState(null);
 
   const methodAndriodPromptRef = useRef();
   const walletAndriodPromptRef = useRef();
+
+  const handleSubmit = () => {
+    if (method.name === 'Airtime') {
+      navigate('AirtimePurchase', {msg: 'WithdrawReward'});
+    } else if (method.name === 'Bank Account') {
+      navigate('WithdrawRewardBank');
+    }
+  };
 
   return (
     <View style={styles.screen}>
       <HeaderText text={'How would you like to withdraw?'} />
       <SelectOption
         value={method?.name || 'Select'}
+        textStyle={{color: method?.name && COLORS.text}}
         onPress={() => {
           methodAndriodPromptRef.current.setVisible(true);
         }}
@@ -45,15 +55,20 @@ const WithdrawReward = ({navigation: {navigate}, route}) => {
       <HeaderText text={'Choose a Wallet'} />
       <SelectOption
         value={wallet?.name || 'Select'}
+        textStyle={{color: wallet?.name && COLORS.text}}
         onPress={() => {
           walletAndriodPromptRef.current.setVisible(true);
         }}
       />
 
-      <HeaderText text={'Choose a Wallet'} />
+      <HeaderText text={'Enter Amount'} />
       <Input placeholder={'Enter Amount'} />
 
-      <Button text={'Proceed'} onPress={() => navigate('AirtimePurchase', {msg:'WithdrawReward'})} />
+      <Button
+        text={'Proceed'}
+        disableColor={!(method && wallet)}
+        onPress={handleSubmit}
+      />
 
       <AndriodPrompt
         ref={methodAndriodPromptRef}

@@ -66,7 +66,13 @@ const Profile = ({navigation: {navigate}, route}) => {
               paddingTop: 15,
             }}>
             <View>
-              <Text style={{fontSize: 13, fontWeight: '500', marginBottom: 6}}>
+              <Text
+                style={{
+                  fontSize: 13,
+                  fontWeight: '500',
+                  marginBottom: 6,
+                  color: COLORS.secondaryText,
+                }}>
                 Account Type
               </Text>
               <Text style={{fontSize: 14, color: COLORS.black}}>
@@ -74,7 +80,13 @@ const Profile = ({navigation: {navigate}, route}) => {
               </Text>
             </View>
             <View style={{left: 100}}>
-              <Text style={{fontSize: 13, fontWeight: '500', marginBottom: 6}}>
+              <Text
+                style={{
+                  fontSize: 13,
+                  fontWeight: '500',
+                  marginBottom: 6,
+                  color: COLORS.secondaryText,
+                }}>
                 My QR code
               </Text>
               <IonIcon
@@ -104,9 +116,9 @@ const Profile = ({navigation: {navigate}, route}) => {
               paddingBottom: 15,
               borderBottomColor: COLORS.lightBorderColor,
             }}>
-            <Text>Full Name</Text>
+            <Text style={{color:COLORS.black}}>Full Name</Text>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{marginRight: 30}}>Tina Anya</Text>
+              <Text style={{marginRight: 30,color:COLORS.black}}>Tina Anya</Text>
               <TouchableOpacity onPress={() => navigate('EditProfile')}>
                 <MatComIcon
                   name="pencil-outline"
@@ -124,8 +136,8 @@ const Profile = ({navigation: {navigate}, route}) => {
               paddingVertical: 15,
               borderBottomColor: COLORS.lightBorderColor,
             }}>
-            <Text>Email</Text>
-            <Text>Justnnenna@gmail.com</Text>
+            <Text style={{color:COLORS.black}}>Email</Text>
+            <Text style={{color:COLORS.black}}>Justnnenna@gmail.com</Text>
           </View>
           <View
             style={{
@@ -135,8 +147,8 @@ const Profile = ({navigation: {navigate}, route}) => {
               paddingVertical: 15,
               borderBottomColor: COLORS.lightBorderColor,
             }}>
-            <Text>Phone Number</Text>
-            <Text>0809996847646</Text>
+            <Text style={{color:COLORS.black}}>Phone Number</Text>
+            <Text style={{color:COLORS.black}}>0809996847646</Text>
           </View>
         </View>
 
@@ -152,11 +164,11 @@ const Profile = ({navigation: {navigate}, route}) => {
             justifyContent: 'space-between',
           }}>
           <View style={{}}>
-            <Text style={styles.title}>History</Text>
-            <Text style={styles.subtitle}>See all my transaction</Text>
+            <Text style={[styles.title, {color:COLORS.black}]}>History</Text>
+            <Text style={[styles.subtitle, {color:COLORS.secondaryText}]}>See all my transaction</Text>
           </View>
           <View>
-            <FIcon name={'chevron-right'} size={24} />
+            <FIcon name={'chevron-right'} size={24} style={{color:COLORS.black}} />
           </View>
         </View>
 
@@ -173,13 +185,13 @@ const Profile = ({navigation: {navigate}, route}) => {
             justifyContent: 'space-between',
           }}>
           <View style={{}}>
-            <Text style={styles.title}>Refer and Earn</Text>
-            <Text style={styles.subtitle}>
+            <Text style={[styles.title,{color:COLORS.black}]}>Refer and Earn</Text>
+            <Text style={[styles.subtitle,{color:COLORS.secondaryText}]}>
               Invite your friends to join CashToken
             </Text>
           </View>
           <View>
-            <FIcon name={'chevron-right'} size={24} />
+            <FIcon name={'chevron-right'} size={24} style={{color:COLORS.black}} />
           </View>
         </View>
 
@@ -195,13 +207,13 @@ const Profile = ({navigation: {navigate}, route}) => {
             justifyContent: 'space-between',
           }}>
           <View style={{}}>
-            <Text style={styles.title}>Agent’s Dashboard</Text>
-            <Text style={styles.subtitle}>
+            <Text style={[styles.title, {color:COLORS.black}]}>Agent’s Dashboard</Text>
+            <Text style={[styles.subtitle, {color:COLORS.secondaryText}]}>
               Invite your friends to join CashToken
             </Text>
           </View>
           <View>
-            <FIcon name={'chevron-right'} size={24} />
+            <FIcon name={'chevron-right'} size={24} style={{color:COLORS.black}} />
           </View>
         </View>
 

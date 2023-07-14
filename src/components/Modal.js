@@ -58,6 +58,7 @@ function CustomModal(props, ref) {
     <Modal visible={visible} transparent={true}>
       <View style={styles.content}>
         <Animated.View
+          onTouchStart={onCancel}
           style={[styles.backdrop, StyleSheet.absoluteFill, backdropAnimStyle]}
         />
 
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 5,
     position: 'absolute',
+    color: COLORS.black,
   },
   promptBtn2: {
     height: 27,
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: 50,
     padding: 5,
+    color: COLORS.black,
     position: 'absolute',
   },
   prompt: {

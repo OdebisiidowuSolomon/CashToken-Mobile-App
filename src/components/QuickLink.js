@@ -44,7 +44,7 @@ const QuickLink = ({item, navigate, route}) => {
             }}
           />
         </View>
-        <Text style={{fontSize: 11, textAlign: 'center', maxWidth: '77%'}}>
+        <Text style={{fontSize: 11, textAlign: 'center', maxWidth: '77%', color:COLORS.secondaryText}}>
           {item?.text}
         </Text>
       </View>

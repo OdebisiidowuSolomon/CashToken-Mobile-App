@@ -52,7 +52,7 @@ const EditProfile = ({navigation, route}) => {
             },
           ]}>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput,{color:COLORS.black}]}
             onFocus={() => setIsFNameFocused(true)}
             onBlur={() => setIsFNameFocused(false)}
             value={FName}
@@ -83,7 +83,7 @@ const EditProfile = ({navigation, route}) => {
             },
           ]}>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput,{color:COLORS.black}]}
             onFocus={() => setIsLNameFocused(true)}
             onBlur={() => setIsLNameFocused(false)}
             value={LName}

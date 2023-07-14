@@ -132,7 +132,14 @@ const HeaderComponent = function HeaderComponent({user, navigate}) {
               style={{fontSize: 11, fontWeight: '500', color: COLORS.black}}>
               CASHTOKEN
             </Text>
-            <Text style={{fontSize: 9, letterSpacing: 5}}>REWARD</Text>
+            <Text
+              style={{
+                fontSize: 9,
+                letterSpacing: 5,
+                color: COLORS.secondaryText,
+              }}>
+              REWARD
+            </Text>
           </View>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -184,7 +191,8 @@ const HeaderComponent = function HeaderComponent({user, navigate}) {
 const FooterComponent = ({navigate}) => {
   return (
     <View style={{paddingHorizontal: 18}}>
-      <View
+      <TouchableOpacity
+        onPress={() => navigate('ReferralIndex')}
         style={{
           flexDirection: 'row',
           marginVertical: 7,
@@ -199,12 +207,18 @@ const FooterComponent = ({navigate}) => {
           <Text style={{fontWeight: '500', color: COLORS.black}}>
             Refer and Earn
           </Text>
-          <Text>Invite your friends to join CashToken</Text>
+          <Text style={{color: COLORS.secondaryText}}>
+            Invite your friends to join CashToken
+          </Text>
         </View>
         <View>
-          <MatIcon name="chevron-right" size={30} />
+          <MatIcon
+            name="chevron-right"
+            size={30}
+            style={{color: COLORS.secondaryText}}
+          />
         </View>
-      </View>
+      </TouchableOpacity>
 
       <View>
         <Text

@@ -15,4 +15,6 @@ export const COLORS = {
   tertiaryCream: '#FFEEC4',
   dividers: '#E8E8E8',
   secondaryText: '#52575C',
+  success: '#04AB47',
+  siteBackground: '#f5f5f5',
 };

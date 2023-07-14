@@ -96,8 +96,10 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
             style={{
               width: '70%',
               paddingHorizontal: 15,
+              color: COLORS.black,
             }}
             placeholder="08146807502"
+            placeholderTextColor={COLORS.default}
           />
           <Button
             text={'Next'}
@@ -176,6 +178,7 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
             textAlign: 'center',
             fontSize: 13,
             fontWeight: '400',
+            color: COLORS.secondaryText,
           }}>
           You will be able to view all your contacts on the CashToken platform
         </Text>
@@ -186,7 +189,7 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
             onPress={e => setChecked(!checked)}
             color={COLORS.secondary}
           />
-          <Text style={{fontSize: 12}}>
+          <Text style={{fontSize: 12, color: COLORS.secondaryText}}>
             I have read and agree to the
             <Text style={{color: COLORS.secondary}}> Privacy Policy</Text>
           </Text>

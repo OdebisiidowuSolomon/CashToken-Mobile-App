@@ -5,11 +5,19 @@ import {TouchableOpacity, Text} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from '../libs/Constants';
+import {transparent} from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 
-const Button = ({customStyle, innerStyle, text, onPress = () => {}}) => {
+const Button = ({
+  customStyle,
+  innerStyle,
+  text,
+  onPress = () => {},
+  disableColor,
+  whiteColor,
+}) => {
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={disableColor ? () => {} : onPress}
       activeOpacity={0.8}
       style={[
         {
@@ -18,7 +26,13 @@ const Button = ({customStyle, innerStyle, text, onPress = () => {}}) => {
         {...customStyle},
       ]}>
       <LinearGradient
-        colors={[COLORS.secondary, COLORS.primary]}
+        colors={
+          disableColor
+            ? [COLORS.default, COLORS.default]
+            : whiteColor
+            ? [COLORS.white, COLORS.white]
+            : [COLORS.secondary, COLORS.primary]
+        }
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
         style={[
@@ -27,14 +41,23 @@ const Button = ({customStyle, innerStyle, text, onPress = () => {}}) => {
             paddingVertical: 15,
             paddingHorizontal: 20,
             borderRadius: 7,
-            backgroundColor: 'red',
+            borderWidth: 2,
+            borderColor: disableColor
+              ? 'transparent'
+              : whiteColor
+              ? COLORS.secondary
+              : 'transparent',
           },
           {...innerStyle},
         ]}>
         <Text
           style={{
             fontSize: 15,
-            color: COLORS.white,
+            color: disableColor
+              ? COLORS.black
+              : whiteColor
+              ? COLORS.secondary
+              : COLORS.white,
             textAlign: 'center',
           }}>
           {text}

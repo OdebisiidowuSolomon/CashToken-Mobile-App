@@ -37,11 +37,11 @@ const AirtimePurchase = ({navigation, route}) => {
 
   const {navigate} = navigation;
 
-  console.log(route);
-
   useEffect(() => {
-    if (route.params.msg === 'WithdrawReward') {
+    if (route?.params?.msg === 'WithdrawReward') {
       setShowWithdrawReward(true);
+    } else {
+      setShowWithdrawReward(false);
     }
   }, [route]);
 
@@ -87,7 +87,10 @@ const AirtimePurchase = ({navigation, route}) => {
             }}>
             +234
           </Text>
-          <TextInput style={{flex: 1}} keyboardType="number-pad" />
+          <TextInput
+            style={{flex: 1, color: COLORS.black}}
+            keyboardType="number-pad"
+          />
         </View>
         <View
           style={{
@@ -142,7 +145,7 @@ const AirtimePurchase = ({navigation, route}) => {
           ₦
         </Text>
         <TextInput
-          style={{flex: 1}}
+          style={{flex: 1, color: COLORS.black}}
           keyboardType="number-pad"
           placeholder="Amount"
         />
@@ -150,7 +153,7 @@ const AirtimePurchase = ({navigation, route}) => {
 
       {showWithdrawReward ? (
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Button text={'Back'} onPress={() => navigation.pop()} />
+          <Button text={'Back'} whiteColor onPress={() => navigation.pop()} />
           <Button text={'Next'} onPress={() => navigate('Summary')} />
         </View>
       ) : (
