@@ -14,6 +14,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../libs/Constants';
+import Button from '../components/Button';
 
 const EditProfile = ({navigation, route}) => {
   const {navigate} = navigation;
@@ -52,7 +53,7 @@ const EditProfile = ({navigation, route}) => {
             },
           ]}>
           <TextInput
-            style={[styles.textInput,{color:COLORS.black}]}
+            style={[styles.textInput, {color: COLORS.black}]}
             onFocus={() => setIsFNameFocused(true)}
             onBlur={() => setIsFNameFocused(false)}
             value={FName}
@@ -83,7 +84,7 @@ const EditProfile = ({navigation, route}) => {
             },
           ]}>
           <TextInput
-            style={[styles.textInput,{color:COLORS.black}]}
+            style={[styles.textInput, {color: COLORS.black}]}
             onFocus={() => setIsLNameFocused(true)}
             onBlur={() => setIsLNameFocused(false)}
             value={LName}
@@ -103,36 +104,9 @@ const EditProfile = ({navigation, route}) => {
         </View>
       </View>
 
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={handleSave}
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: 45,
-        }}>
-        <LinearGradient
-          colors={[COLORS.secondary, COLORS.primary]}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 0}}
-          style={[
-            styles.btn,
-            {
-              width: 'auto',
-              padding: 15,
-              paddingHorizontal: 25,
-              borderRadius: 7,
-            },
-          ]}>
-          <Text
-            style={{
-              fontSize: 15,
-              color: COLORS.white,
-            }}>
-            Save
-          </Text>
-        </LinearGradient>
-      </TouchableOpacity>
+            <View style={{flexDirection:'row', justifyContent:'center'}}>
+      <Button text={'Save'} />
+            </View>
     </ScrollView>
   );
 };

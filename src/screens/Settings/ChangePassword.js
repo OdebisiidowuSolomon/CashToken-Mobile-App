@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 // ChangePassword.js
 
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../../libs/Constants';
 import HeaderText from '../../components/HeaderText';
@@ -11,6 +11,21 @@ import Button from '../../components/Button';
 
 const ChangePassword = ({navigation, route}) => {
   const {navigate} = navigation;
+
+  const [currentPassword, setCurrentPassword] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
+  const [confirmNewPassword, setConfirmNewPassword] = useState(null);
+
+  const validate = () => {
+    return (
+      currentPassword?.trim().length > 0 &&
+      newPassword?.trim().length > 0 &&
+      confirmNewPassword?.trim().length > 0 &&
+      confirmNewPassword?.trim() === newPassword?.trim()
+    );
+  };
+
+  validate();
 
   return (
     <View style={styles.screen}>
@@ -23,13 +38,15 @@ const ChangePassword = ({navigation, route}) => {
         customStyle={{textAlign: 'center', color: COLORS.text, fontSize: 12}}
       />
       <HeaderText text={'Enter current password'} />
-      <Input />
-      <HeaderText text={'Enter new password'} />
-      <Input />
-      <HeaderText text={'Confirm new password'} />
-      <Input />
+      <Input value={currentPassword} onChangeText={setCurrentPassword} />
 
-      <Button text={'Update Password'} />
+      <HeaderText text={'Enter new password'} />
+      <Input value={newPassword} onChangeText={setNewPassword} />
+
+      <HeaderText text={'Confirm new password'} />
+      <Input value={confirmNewPassword} onChangeText={setConfirmNewPassword} />
+
+      <Button text={'Update Password'} disableColor={!validate()} />
     </View>
   );
 };

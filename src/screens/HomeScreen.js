@@ -47,31 +47,31 @@ const QLinks = [
   },
   {
     id: 3,
-    image: require('../images/CashToken-Logo-2.png'),
+    image: require('../images/electrical_services.png'),
     text: 'Buy Power',
     route: 'ElectricityPurchase',
   },
   {
     id: 4,
-    image: require('../images/CashToken-Logo-2.png'),
+    image: require('../images/connected_tv.png'),
     text: 'Recharge Cable',
     route: 'CablePurchase',
   },
   {
     id: 5,
-    image: require('../images/CashToken-Logo-2.png'),
+    image: require('../images/buyData.png'),
     text: 'Buy Data',
     route: 'DataPurchase',
   },
   {
     id: 6,
-    image: require('../images/CashToken-Logo-2.png'),
+    image: require('../images/local_mall.png'),
     text: 'Shop on Marketplace',
   },
-  {id: 7, image: require('../images/CashToken-Logo-2.png'), text: 'Scan'},
+  {id: 7, image: require('../images/qr_code_scanner.png'), text: 'Scan'},
   {
     id: 8,
-    image: require('../images/CashToken-Logo-2.png'),
+    image: require('../images/Agent_icon.png'),
     text: 'Become an Agent',
   },
 ];

@@ -4,7 +4,7 @@ import React from 'react';
 import {COLORS} from '../libs/Constants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Input = ({placeholder}) => {
+const Input = ({placeholder, onChangeText, value}) => {
   return (
     <TextInput
       style={{
@@ -12,6 +12,8 @@ const Input = ({placeholder}) => {
         paddingHorizontal: 11,
         borderRadius: 5,
       }}
+      onChangeText={onChangeText}
+      value={value}
       placeholder={placeholder}
     />
   );
