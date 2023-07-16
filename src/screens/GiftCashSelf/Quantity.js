@@ -13,10 +13,10 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {COLORS} from '../../libs/Constants';
-import LinearGradient from 'react-native-linear-gradient';
 import AndriodPrompt from '../../components/AndriodPrompt';
 import HeaderText from '../../components/HeaderText';
 import Button from '../../components/Button';
+import {useAgentStore} from '../../store/AgentStore';
 
 const FlagData = [
   {flags: require('../../images/NIG.png'), label: 'NGN'},
@@ -26,6 +26,7 @@ const FlagData = [
 
 const Quantity = ({navigation: {navigate}, route}) => {
   const [label, setLabel] = useState('NGN');
+  const {productName, mode} = useAgentStore(state => state);
 
   const handleLabelChange = text => {
     androidPromptRef.current.setVisible(false);
@@ -37,18 +38,33 @@ const Quantity = ({navigation: {navigate}, route}) => {
   return (
     <View style={styles.screen}>
       <View>
-        <HeaderText text={'How much CashToken do you want to gift?'} />
+        {productName ? (
+          <HeaderText
+            text={`Enter the amount of ${productName} you want to gift?`}
+          />
+        ) : (
+          <HeaderText text={`How much CashToken do you want to gift?`} />
+        )}
       </View>
 
-      <View style={{marginTop: 10}}>
+      <View
+        style={{
+          marginTop: 10,
+          flexDirection: 'row',
+          alignItems: 'center',
+          backgroundColor: COLORS.lightBorderColor,
+          paddingHorizontal: 13,
+          borderRadius: 5,
+        }}>
+        <Text style={{color: COLORS.black}}>CashToken: </Text>
         <TextInput
           style={{
-            backgroundColor: COLORS.lightBorderColor,
             paddingLeft: 17,
             borderRadius: 6,
-            color: COLORS.black,
+            color: COLORS.text,
+            flex: 1,
           }}
-          placeholder="CashToken: Enter Amount"
+          placeholder="Enter Amount"
           placeholderTextColor={COLORS.default}
         />
       </View>
@@ -74,15 +90,27 @@ const Quantity = ({navigation: {navigate}, route}) => {
               backgroundColor: COLORS.lightBorderColor,
               paddingLeft: 17,
               borderRadius: 6,
-              color:COLORS.black
+              color: COLORS.black,
             }}
             placeholder="00.00"
-            placeholderTextColor={COLORS.black}
+            placeholderTextColor={COLORS.text}
           />
         </View>
       </View>
 
-      <Button text={'Next'} onPress={() => navigate('GiftPaymentMethod')} />
+      {productName ? (
+        <Button
+          text={'Next'}
+          onPress={() => navigate('AgentGiftPaymentMethod')}
+        />
+      ) : mode === 'Agent' ? (
+        <Button
+          text={'Next'}
+          onPress={() => navigate('AgentGiftPaymentMethod')}
+        />
+      ) : (
+        <Button text={'Next'} onPress={() => navigate('GiftPaymentMethod')} />
+      )}
 
       <AndriodPrompt ref={androidPromptRef} title={'Select Currency'}>
         <View>

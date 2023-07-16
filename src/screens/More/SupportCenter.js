@@ -52,7 +52,7 @@ const SupportCenter = ({navigation, route}) => {
             justifyContent: 'center',
           }}>
           <Image source={require('../../images/ad_units.png')} />
-          <Text>0801156789</Text>
+          <Text style={{color: COLORS.text}}>0801156789</Text>
         </View>
         <Text
           style={{
@@ -60,6 +60,7 @@ const SupportCenter = ({navigation, route}) => {
             marginLeft: '22.5%',
             marginTop: 15,
             textAlign: 'center',
+            color: COLORS.text,
           }}>
           Click on the number above to call customer service
         </Text>

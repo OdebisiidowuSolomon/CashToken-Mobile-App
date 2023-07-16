@@ -15,11 +15,13 @@ const slides = [
     id: '1',
     title: 'Reward Balance',
     subtitle: 'Withdraw Reward',
+    path: 'WithdrawReward',
   },
   {
     id: '2',
     title: 'CashToken Balance',
     subtitle: 'Gift CashTokens',
+    path: 'RecipientSelection',
   },
 ];
 
@@ -28,7 +30,7 @@ const QLinks = [
     id: 1,
     image: require('../../images/CashToken-Logo-2.png'),
     text: 'Gift CashToken',
-    route: '',
+    route: 'RecipientSelection',
   },
   {
     id: 2,
@@ -57,7 +59,7 @@ const WalletHomeScreen = ({navigation: {navigate}, route}) => {
         text={'Wallet'}
         customStyle={{textAlign: 'center', marginTop: 20}}
       />
-      <CustomSlide slides={slides} />
+      <CustomSlide slides={slides} navigate={navigate} />
 
       <View
         style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15}}>
@@ -76,12 +78,16 @@ const WalletHomeScreen = ({navigation: {navigate}, route}) => {
         <Text style={{fontSize: 16, color: COLORS.black}}>
           Transactions History
         </Text>
-        <Text style={{color: COLORS.secondary}}>See All</Text>
+        <Text
+          style={{color: COLORS.secondary}}
+          onPress={() => navigate('TransactionHistory')}>
+          See All
+        </Text>
       </View>
 
-      <TransactionItem />
-      <TransactionItem />
-      <TransactionItem />
+      <TransactionItem navigate={navigate} />
+      <TransactionItem navigate={navigate} />
+      <TransactionItem navigate={navigate} />
     </ScrollView>
   );
 };

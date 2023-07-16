@@ -5,7 +5,8 @@ import React, {useState} from 'react';
 import {COLORS} from '../libs/Constants';
 
 const ReferralTab = ({tabOne, tabTwo}) => {
-  const [activeTab, setActiveTab] = useState('Tab 1');
+  // const [activeTab, setActiveTab] = useState('tabOne');
+  const [activeTab, setActiveTab] = useState('tabOne');
 
   return (
     <ScrollView style={{marginTop: 10}}>

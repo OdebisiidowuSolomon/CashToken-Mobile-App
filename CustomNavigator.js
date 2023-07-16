@@ -17,7 +17,6 @@ import OctIcon from 'react-native-vector-icons/Octicons';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // import NestedScreen from './screens/NestedScreen';
-import MyScreen from './src/screens/MyScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {COLORS} from './src/libs/Constants';
@@ -53,6 +52,7 @@ import Utilities from './src/screens/utility/Utilities';
 import TransferReward from './src/screens/TransferReward/TransferRewardIndex';
 import Settings from './src/screens/Settings/SettingsIndex';
 import ChangePassword from './src/screens/Settings/ChangePassword';
+import AgentScreen from './src/screens/Agent/AgentScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -87,7 +87,8 @@ const FirstScreenNavigator = () => {
           ),
         }}
         name="HomeNavigator"
-        component={HomeNavigator}
+        component={HomeScreen}
+        // component={InnerScreenNavigator}
       />
       <Tab.Screen
         options={{
@@ -130,6 +131,7 @@ const FirstScreenNavigator = () => {
       <Tab.Screen
         options={{
           tabBarLabel: 'Agent',
+          headerShown: false,
           tabBarIcon: ({color, focused, size}) => (
             <View
               style={{
@@ -143,7 +145,7 @@ const FirstScreenNavigator = () => {
           ),
         }}
         name="Agent"
-        component={MyScreen}
+        component={AgentScreen}
       />
       <Tab.Screen
         options={{
@@ -224,36 +226,30 @@ const HomeNavigator = () => {
         options={e => ({
           title: '',
           headerShadowVisible: false,
+          headerStyle: {backgroundColor: COLORS.gold},
           headerTintColor: COLORS.secondary,
-          header: ({navigation}) => {
+          headerLeft: ({tintColor}) => {
             return (
-              <View style={styles.container}>
-                <WavyHeader customStyles={styles.svgCurve} />
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                    top: 55,
-                    backgroundColor: COLORS.tertiaryCream,
-                  }}>
+              <TouchableOpacity
+                onPress={() => {
+                  e.navigation.goBack();
+                }}>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                   <OctIcon
                     name={'arrow-left'}
                     size={25}
-                    style={{marginTop: 4.5, color: COLORS.secondary}}
+                    style={{marginTop: 4.5, color: tintColor}}
                   />
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Text
-                      style={{
-                        marginLeft: 10,
-                        fontSize: 16,
-                        color: COLORS.secondary,
-                      }}>
-                      Back
-                    </Text>
-                  </TouchableOpacity>
+                  <Text
+                    style={{
+                      marginLeft: 10,
+                      fontSize: 16,
+                      color: tintColor,
+                    }}>
+                    Back
+                  </Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             );
           },
         })}

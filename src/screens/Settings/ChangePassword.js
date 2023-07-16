@@ -46,7 +46,7 @@ const ChangePassword = ({navigation, route}) => {
       <HeaderText text={'Confirm new password'} />
       <Input value={confirmNewPassword} onChangeText={setConfirmNewPassword} />
 
-      <Button text={'Update Password'} disableColor={!validate()} />
+      <Button text={'Update Password'} disableColor={!validate()} onPress={() => validate() && navigate('Settings')} />
     </View>
   );
 };

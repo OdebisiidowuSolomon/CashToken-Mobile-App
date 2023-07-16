@@ -8,8 +8,9 @@ import {
   Dimensions,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {COLORS} from '../libs/Constants';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -28,15 +29,28 @@ const {height, width} = Dimensions.get('screen');
 //   },
 // ];
 
-const Slide = ({item: {id, title, subtitle}, showEllipse}) => {
+const Slide = ({
+  item: {id, title, subtitle, path, backgroundColor, showEyeIcon = true},
+  showEllipse,
+  navigate,
+}) => {
+  const [amount, setAmount] = useState(null);
+
+  const handleToggleAmount = () => {
+    return amount ? setAmount(null) : setAmount('30.00');
+  };
+
   return (
     <View
       style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor:
-          id === '1' ? COLORS.secondaryDarkBlue : COLORS.secondaryGreen,
+        backgroundColor: backgroundColor
+          ? backgroundColor
+          : id === '1'
+          ? COLORS.secondaryDarkBlue
+          : COLORS.secondaryGreen,
         paddingHorizontal: 15,
         marginHorizontal: id === '1' && 18,
         marginRight: id === '2' && 18,
@@ -49,22 +63,40 @@ const Slide = ({item: {id, title, subtitle}, showEllipse}) => {
           <Text style={{marginBottom: 10, fontSize: 13, color: COLORS.white}}>
             {title}
           </Text>
-          <Icon
-            name="eye-off-outline"
-            style={{color: COLORS.white, marginLeft: 8}}
-            size={18}
-          />
+          {showEyeIcon && (
+            <TouchableOpacity onPress={handleToggleAmount}>
+              {amount ? (
+                <Icon
+                  name="eye-outline"
+                  style={{color: COLORS.white, marginLeft: 8}}
+                  size={18}
+                />
+              ) : (
+                <Icon
+                  name="eye-off-outline"
+                  style={{color: COLORS.white, marginLeft: 8}}
+                  size={18}
+                />
+              )}
+            </TouchableOpacity>
+          )}
         </View>
-        <Text style={{fontSize: 20, color: COLORS.white}}>****</Text>
+        <Text style={{fontSize: 20, color: COLORS.white}}>
+          {amount ? amount : '****'}
+        </Text>
       </View>
-      <View
+      <TouchableOpacity
+        onPress={() => path && navigate(path)}
         style={{
           backgroundColor: COLORS.white,
           padding: 7,
-          borderRadius: 8,color:COLORS.secondaryText
+          borderRadius: 8,
+          color: COLORS.secondaryText,
         }}>
-        <Text style={{fontSize: 12,color:COLORS.secondaryText}}>{subtitle}</Text>
-      </View>
+        <Text style={{fontSize: 12, color: COLORS.secondaryText}}>
+          {subtitle}
+        </Text>
+      </TouchableOpacity>
       {id === '1' && showEllipse && (
         <>
           <Image
@@ -90,7 +122,7 @@ const Slide = ({item: {id, title, subtitle}, showEllipse}) => {
   );
 };
 
-const CustomSlide = ({slides, showEllipse = true}) => {
+const CustomSlide = ({slides, showEllipse = true, navigate}) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 
   const ref = useRef();
@@ -112,7 +144,9 @@ const CustomSlide = ({slides, showEllipse = true}) => {
         horizontal
         data={slides}
         pagingEnabled
-        renderItem={({item}) => <Slide item={item} showEllipse={showEllipse} />}
+        renderItem={({item}) => (
+          <Slide item={item} showEllipse={showEllipse} navigate={navigate} />
+        )}
       />
       <Indicator currentSlideIndex={currentSlideIndex} slides={slides} />
     </View>

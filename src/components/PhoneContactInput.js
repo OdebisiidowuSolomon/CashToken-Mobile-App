@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import {View, Text, TextInput, Image} from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import { COLORS } from '../libs/Constants';
 
-const PhoneContactInput = () => {
+const PhoneContactInput = ({navigate}) => {
   return (
     <View
       style={{
@@ -29,9 +29,10 @@ const PhoneContactInput = () => {
           }}>
           +234
         </Text>
-        <TextInput style={{flex: 1}} keyboardType="number-pad" />
+        <TextInput style={{flex: 1,color:COLORS.text}} keyboardType="number-pad" />
       </View>
-      <View
+      <TouchableOpacity
+        onPress={() => navigate('GiftThirdPartyContacts')}
         style={{
           backgroundColor: COLORS.gold,
           flex: 0.1,
@@ -40,7 +41,7 @@ const PhoneContactInput = () => {
           borderRadius: 5,
         }}>
         <Image source={require('../images/contacts.png')} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

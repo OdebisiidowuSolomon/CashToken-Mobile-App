@@ -81,7 +81,12 @@ const CablePurchase = ({navigation: {navigate}, route}) => {
       <AndriodPrompt
         ref={providerAndriodPromptRef}
         title="Select a Provider"
-        titleStyle={{marginLeft: '5%'}}>
+        titleStyle={{marginLeft: '5%'}}
+        topStyle={{
+          borderBottomWidth: 1,
+          borderBottomColor: COLORS.dividers,
+        }}
+        promptStyle={{borderTopLeftRadius: 0, borderTopRightRadius: 0}}>
         <AndroidDataList
           data={providers}
           setValue={setProvider}
@@ -99,6 +104,7 @@ const CablePurchase = ({navigation: {navigate}, route}) => {
           borderBottomWidth: 1,
           borderBottomColor: COLORS.dividers,
         }}
+        promptStyle={{borderTopLeftRadius: 0, borderTopRightRadius: 0}}
         titleStyle={{marginLeft: '5%'}}>
         <AndroidDataList
           data={packages}

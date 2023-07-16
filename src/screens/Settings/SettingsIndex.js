@@ -22,6 +22,7 @@ const Settings = ({navigation, route}) => {
           title={'Profile'}
         />
         <SelectableCard
+          onPress={() => navigate('Profile')}
           image={require('../../images/person_2.png')}
           title={'Justina Anya'}
         />

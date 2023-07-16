@@ -11,7 +11,6 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../libs/Constants';
 import Button from '../components/Button';
@@ -104,9 +103,9 @@ const EditProfile = ({navigation, route}) => {
         </View>
       </View>
 
-            <View style={{flexDirection:'row', justifyContent:'center'}}>
-      <Button text={'Save'} />
-            </View>
+      <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+        <Button text={'Save'} onPress={handleSave} />
+      </View>
     </ScrollView>
   );
 };

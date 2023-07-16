@@ -46,7 +46,7 @@ const WithdrawReward = ({navigation, route}) => {
       <HeaderText text={'How would you like to withdraw?'} />
       <SelectOption
         value={method?.name || 'Select'}
-        textStyle={{color: method?.name && COLORS.text}}
+        textStyle={{color: method?.name ? COLORS.text : COLORS.default}}
         onPress={() => {
           methodAndriodPromptRef.current.setVisible(true);
         }}
@@ -55,7 +55,7 @@ const WithdrawReward = ({navigation, route}) => {
       <HeaderText text={'Choose a Wallet'} />
       <SelectOption
         value={wallet?.name || 'Select'}
-        textStyle={{color: wallet?.name && COLORS.text}}
+        textStyle={{color: wallet?.name ? COLORS.text : COLORS.default}}
         onPress={() => {
           walletAndriodPromptRef.current.setVisible(true);
         }}

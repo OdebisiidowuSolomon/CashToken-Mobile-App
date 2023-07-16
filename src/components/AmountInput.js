@@ -21,9 +21,10 @@ const AmountInput = () => {
         ₦
       </Text>
       <TextInput
-        style={{flex: 1}}
+        style={{flex: 1, color: COLORS.text}}
         keyboardType="number-pad"
         placeholder="Amount"
+        placeholderTextColor={COLORS.default}
       />
     </View>
   );

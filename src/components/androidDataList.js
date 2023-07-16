@@ -5,19 +5,17 @@ import {RadioButton} from 'react-native-paper';
 import {COLORS} from '../libs/Constants';
 
 const AndroidDataList = ({setValue, key, value, data}, ref) => {
-  console.log(value, 'value');
   return (
     <View style={{marginTop: 10}}>
       <RadioButton.Group
         onValueChange={e => {
-          // console.log(e);
           setValue(e);
           setTimeout(() => {
             ref.current.setVisible(false);
           }, 400);
         }}
         value={value}>
-        {data.map((item,_) => (
+        {data.map((item, _) => (
           <View
             style={{
               flexDirection: 'row',
@@ -29,7 +27,12 @@ const AndroidDataList = ({setValue, key, value, data}, ref) => {
               style={{flex: 0.1, objectFit: 'contain'}}
               source={require('../images/Ikeja.png')}
             />
-            <Text style={{flex: item.price ? 0.75 : 0.8, marginLeft: 10}}>
+            <Text
+              style={{
+                flex: item.price ? 0.75 : 0.8,
+                marginLeft: 10,
+                color: COLORS.text,
+              }}>
               {item.name}
             </Text>
             <View
@@ -38,7 +41,7 @@ const AndroidDataList = ({setValue, key, value, data}, ref) => {
                 flexDirection: 'row',
                 alignItems: 'center',
               }}>
-              {item.price && <Text>N{item.price}</Text>}
+              {item.price && <Text style={{color:COLORS.text}}>N{item.price}</Text>}
               <RadioButton value={item} color={COLORS.secondary} />
             </View>
           </View>

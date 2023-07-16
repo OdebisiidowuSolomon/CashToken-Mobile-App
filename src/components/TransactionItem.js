@@ -3,10 +3,10 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {COLORS} from '../libs/Constants';
 
-const TransactionItem = ({history, image, green, red, onPress}) => {
+const TransactionItem = ({history, image, green, red, onPress, navigate}) => {
   return (
     <TouchableOpacity
-    onPress={onPress}
+      onPress={() => navigate('TransactionDetails')}
       style={{
         flexDirection: 'row',
         alignItems: 'center',
@@ -42,8 +42,8 @@ const TransactionItem = ({history, image, green, red, onPress}) => {
             justifyContent: 'space-between',
             marginTop: 5,
           }}>
-          <Text style={{fontSize: 12}}>2 CashTokens</Text>
-          <Text style={{fontSize: 12}}>1:30, Feb 20, 2023</Text>
+          <Text style={{fontSize: 12, color:COLORS.text}}>2 CashTokens</Text>
+          <Text style={{fontSize: 12, color:COLORS.text}}>1:30, Feb 20, 2023</Text>
         </View>
       </View>
     </TouchableOpacity>

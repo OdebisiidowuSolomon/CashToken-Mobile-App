@@ -60,21 +60,13 @@ const TransactionHistory = ({navigation, route}) => {
       </View>
       <View>
         <TransactionItem
-          onPress={() => navigate('TransactionDetails')}
+          navigate={navigate}
           image={require('../../images/CashToken-Logo-2.png')}
           green={true}
           history={true}
         />
-        <TransactionItem
-          onPress={() => navigate('TransactionDetails')}
-          red={true}
-          history={true}
-        />
-        <TransactionItem
-          onPress={() => navigate('TransactionDetails')}
-          green={true}
-          history={true}
-        />
+        <TransactionItem navigate={navigate} red={true} history={true} />
+        <TransactionItem navigate={navigate} green={true} history={true} />
       </View>
 
       <OptionPrompt
@@ -86,7 +78,10 @@ const TransactionHistory = ({navigation, route}) => {
           <CustomText
             text={item.name}
             key={item.name}
-            onPress={() => setCategory(item.name)}
+            onPress={() => {
+              setCategory(item.name);
+              categoryPromptRef.current.setVisible(false);
+            }}
           />
         ))}
 
@@ -95,7 +90,10 @@ const TransactionHistory = ({navigation, route}) => {
           <CustomText
             text={item.name}
             key={item.name}
-            onPress={() => setCategory(item.name)}
+            onPress={() => {
+              setCategory(item.name);
+              categoryPromptRef.current.setVisible(false);
+            }}
           />
         ))}
       </OptionPrompt>
@@ -108,7 +106,10 @@ const TransactionHistory = ({navigation, route}) => {
           <CustomText
             text={item.name}
             key={item.name}
-            onPress={() => setStatus(item.name)}
+            onPress={() => {
+              setStatus(item.name);
+              statusPromptRef.current.setVisible(false);
+            }}
           />
         ))}
       </OptionPrompt>
@@ -157,8 +158,12 @@ const DropdownText = ({text, textStyle, onPress}) => {
     <TouchableOpacity
       onPress={onPress}
       style={{flexDirection: 'row', marginRight: 25}}>
-      <Text style={{...textStyle}}>{text}</Text>
-      <Icon name={'angle-down'} size={20} style={{marginLeft: 10}} />
+      <Text style={[{color: COLORS.black}, {...textStyle}]}>{text}</Text>
+      <Icon
+        name={'angle-down'}
+        size={20}
+        style={{marginLeft: 10, color: COLORS.black}}
+      />
     </TouchableOpacity>
   );
 };

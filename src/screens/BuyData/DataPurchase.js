@@ -28,7 +28,7 @@ const DataPurchase = ({navigation: {navigate}, route}) => {
   return (
     <View style={styles.screen}>
       <HeaderText text={'Mobile Number'} />
-      <PhoneContactInput />
+      <PhoneContactInput navigate={navigate} />
 
       <HeaderText text={'Select Network Provider'} />
       <NetworkProviderList provider={provider} setProvider={setProvider} />
@@ -49,10 +49,15 @@ const DataPurchase = ({navigation: {navigate}, route}) => {
             color: _package?.size ? COLORS.black : COLORS.default,
           }}
           placeholder="Select a Plan"
+          placeholderTextColor={COLORS.default}
           value={_package?.size ? _package?.size + ' MB' : null}
           editable={false}
         />
-        <Icon name="chevron-down" size={24} style={{flex: 0.1}} />
+        <Icon
+          name="chevron-down"
+          size={24}
+          style={{flex: 0.1, color: COLORS.text}}
+        />
       </TouchableOpacity>
 
       <HeaderText text={'Amount'} />

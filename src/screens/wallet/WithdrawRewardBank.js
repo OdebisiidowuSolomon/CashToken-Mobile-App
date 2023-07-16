@@ -26,7 +26,7 @@ const WithdrawRewardBank = ({navigation, route}) => {
       <HeaderText text={'Choose Bank'} />
       <InputOption
         value={bankName || 'Select Bank'}
-        textStyle={{color: bankName && COLORS.text}}
+        textStyle={{color: bankName ? COLORS.text: COLORS.default}}
         onPress={() => navigate('BankList')}
       />
 

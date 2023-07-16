@@ -15,7 +15,6 @@ const Button = ({
   disableColor,
   whiteColor,
 }) => {
-  console.log(disableColor);
   return (
     <TouchableOpacity
       onPress={disableColor ? () => {} : onPress}

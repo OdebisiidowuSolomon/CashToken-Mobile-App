@@ -3,8 +3,9 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
 import {COLORS} from '../libs/Constants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import CustomIcon from 'react-native-vector-icons/Ionicons';
 
-const InputOption = ({onPress, value, textStyle, leftText}) => {
+const InputOption = ({onPress, value, textStyle, leftText, actualValue, customIcon}) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -18,13 +19,31 @@ const InputOption = ({onPress, value, textStyle, leftText}) => {
       }}>
       <Text
         style={[
-          {flex: 0.9, paddingLeft: 8, color: COLORS.lightgray},
+          {
+            flex: 0.9,
+            paddingLeft: 8,
+            color: actualValue ? COLORS.text : COLORS.default,
+          },
           {...textStyle},
         ]}>
-        {value}
+        {actualValue || value}
       </Text>
-      <View>{leftText && <Text>{leftText}</Text>}</View>
-      <Icon name="chevron-right" size={29} style={{flex: 0.1}} />
+      <View>
+        {leftText && <Text style={{color: COLORS.text}}>{leftText}</Text>}
+      </View>
+      {customIcon ? (
+        <CustomIcon
+          name="chevron-down-sharp"
+          size={29}
+          style={{flex: 0.1, color: COLORS.text}}
+        />
+      ) : (
+        <Icon
+          name="chevron-right"
+          size={29}
+          style={{flex: 0.1, color: COLORS.text}}
+        />
+      )}
     </TouchableOpacity>
   );
 };

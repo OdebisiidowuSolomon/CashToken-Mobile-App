@@ -15,7 +15,7 @@ const TransactionDetails = ({navigation, route}) => {
       <Card>
         <View style={{alignItems: 'center'}}>
           <Image source={require('../../images/Mtn_logo.png')} />
-          <Text style={{marginTop: 6}}>MTN</Text>
+          <Text style={{marginTop: 6, color: COLORS.text}}>MTN</Text>
         </View>
         <TextItem Ltext={'Amount'} Rtext={'N 2,000'} />
         <TextItem Ltext={'Status'} Rtext={'Successful'} />
@@ -40,9 +40,11 @@ const TransactionDetails = ({navigation, route}) => {
         <TextItem Ltext={'Transaction Date'} Rtext={'1:30, Feb 20, 2023'} />
       </Card>
 
-      <Text style={{textAlign: 'center', marginTop: 15}}>
+      <Text style={{textAlign: 'center', marginTop: 15, color: COLORS.text}}>
         Need help?{' '}
-        <Text style={{color: COLORS.secondary}}>Contact Support</Text>
+        <Text style={{color: COLORS.secondary}}>
+          Contact Support
+        </Text>
       </Text>
     </ScrollView>
   );
@@ -73,11 +75,11 @@ const TextItem = ({Ltext, Rtext, copy}) => {
         justifyContent: 'space-between',
         marginTop: 10,
       }}>
-      <Text>{Ltext}</Text>
+      <Text style={{color: COLORS.text}}>{Ltext}</Text>
       <View style={{flexDirection: 'row'}}>
-        <Text>{Rtext}</Text>
+        <Text style={{color: COLORS.text}}>{Rtext}</Text>
         {copy && (
-          <Icon size={20} name={'content-copy'} style={{marginLeft: 5}} />
+          <Icon size={20} name={'content-copy'} style={{marginLeft: 5,color: COLORS.text}} />
         )}
       </View>
     </View>

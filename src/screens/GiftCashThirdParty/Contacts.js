@@ -94,7 +94,6 @@ const Contacts = ({navigation: {navigate}, route}) => {
         </View>
       )}
 
-
       <View>
         {!contacts ? (
           <Spinner />

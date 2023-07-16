@@ -3,7 +3,7 @@
 // ReferralIndex.js
 
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Share, Alert} from 'react-native';
 import {COLORS} from '../../libs/Constants';
 import BannerImage from '../../components/BannerImage';
 import HeaderText from '../../components/HeaderText';
@@ -12,6 +12,26 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 const ReferralIndex = ({navigation, route}) => {
   const {navigate} = navigation;
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'https://ng.cashtoken.africa/r/JUS',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
 
   return (
     <View style={styles.screen}>
@@ -48,7 +68,7 @@ const ReferralIndex = ({navigation, route}) => {
         <Text style={{color: COLORS.black}}>
           https://ng.cashtoken.africa/r/JUS
         </Text>
-        <Button text={'Share'} customStyle={{marginTop: 0}} />
+        <Button text={'Share'} customStyle={{marginTop: 0}} onPress={onShare} />
       </View>
       <TouchableOpacity
         onPress={() => navigate('ReferralHistory')}

@@ -21,6 +21,7 @@ import AndriodPrompt from '../../components/AndriodPrompt';
 import SelectableCard from '../../components/SelectableCard';
 import {Checkbox} from 'react-native-paper';
 import ConfirmationModal from '../../components/confirmationModal';
+import AmountInput from '../../components/AmountInput';
 
 const NetworkProviderData = [
   {id: 1, img: require('../../images/Mtn_logo.png')},
@@ -92,16 +93,17 @@ const AirtimePurchase = ({navigation, route}) => {
             keyboardType="number-pad"
           />
         </View>
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: COLORS.gold,
             flex: 0.1,
             marginLeft: 7,
             padding: 11,
             borderRadius: 5,
-          }}>
+          }}
+          onPress={() => navigate('GiftThirdPartyContacts')}>
           <Image source={require('../../images/contacts.png')} />
-        </View>
+        </TouchableOpacity>
       </View>
 
       <HeaderText text={'Select Network Provider'} />
@@ -129,27 +131,7 @@ const AirtimePurchase = ({navigation, route}) => {
       </View>
 
       <HeaderText text={'Enter Amount'} />
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: COLORS.lightBorderColor,
-          alignItems: 'center',
-          paddingHorizontal: 10,
-          borderRadius: 4,
-        }}>
-        <Text
-          style={{
-            paddingRight: 5,
-            color: COLORS.black,
-          }}>
-          ₦
-        </Text>
-        <TextInput
-          style={{flex: 1, color: COLORS.black}}
-          keyboardType="number-pad"
-          placeholder="Amount"
-        />
-      </View>
+        <AmountInput/>
 
       {showWithdrawReward ? (
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -200,7 +182,11 @@ const AirtimePurchase = ({navigation, route}) => {
         </View>
         <Button
           text={'Confirm'}
-          onPress={() => navigate('GiftPaymentMethod')}
+          onPress={() => {
+            navigate('GiftPaymentMethod');
+            andriodPromptRef.current.setVisible(false);
+            confirmationModalRef.current.setVisible(false);
+          }}
         />
       </AndriodPrompt>
       <ConfirmationModal

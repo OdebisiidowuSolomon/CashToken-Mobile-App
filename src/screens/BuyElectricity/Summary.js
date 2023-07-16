@@ -7,10 +7,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../../libs/Constants';
 import Button from '../../components/Button';
 
-const Summary = ({navigation:{navigate},route}) => {
+const Summary = ({navigation: {navigate}, route}) => {
   return (
     <View style={styles.screen}>
-      <Text style={{textAlign: 'center'}}>Amount to Pay</Text>
+      <Text style={{textAlign: 'center', color: COLORS.text}}>
+        Amount to Pay
+      </Text>
       <Text
         style={{
           textAlign: 'center',
@@ -72,7 +74,10 @@ const Summary = ({navigation:{navigate},route}) => {
           />
         </View>
       </View>
-      <Button text={'Proceed to Pay'} onPress={() => navigate('GiftPaymentMethod')} />
+      <Button
+        text={'Proceed to Pay'}
+        onPress={() => navigate('GiftPaymentMethod')}
+      />
     </View>
   );
 };

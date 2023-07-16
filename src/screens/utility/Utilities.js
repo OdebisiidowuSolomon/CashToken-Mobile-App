@@ -3,7 +3,14 @@
 // Utilities.js
 
 import React from 'react';
-import {StyleSheet, Dimensions, Text, View, Image} from 'react-native';
+import {
+  StyleSheet,
+  Dimensions,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import HeaderText from '../../components/HeaderText';
 import {COLORS} from '../../libs/Constants';
 
@@ -14,28 +21,33 @@ const data = [
     title: 'Buy Airtime',
     image: require('../../images/phonelink_ring.png'),
     subtitle: 'Earn CashToken and Casback on every airtime purchase.',
+    path: 'AirtimePurchase',
   },
   {
     title: 'Buy Data',
     image: require('../../images/buyData.png'),
     subtitle: 'Earn CashToken and Casback on every data purchase.',
+    path: 'DataPurchase',
   },
   {
     title: 'Buy Power',
     image: require('../../images/electrical_services.png'),
     subtitle: 'Earn CashToken and Casback on every electricity bills payment. ',
+    path: 'ElectricityPurchase',
   },
   {
     title: 'Recharge Cable',
     image: require('../../images/connected_tv.png'),
     subtitle:
       'Earn CashToken and Casback on every cable TV subscription purchase.',
+    path: 'CablePurchase',
   },
   {
     title: 'Shop on Marketplace',
     image: require('../../images/local_mall.png'),
     subtitle:
       'Shop to earn rewards, stand a chance to win between cash 5k-100m weekly!',
+    path: '',
   },
 ];
 
@@ -74,8 +86,15 @@ const Utilities = ({navigation, route}) => {
           gap: 16,
           flexWrap: 'wrap',
         }}>
-        {data.map(({image, title, subtitle}) => (
-          <Card image={image} subtitle={subtitle} title={title} key={title} />
+        {data.map(({image, title, subtitle, path}) => (
+          <Card
+            image={image}
+            subtitle={subtitle}
+            title={title}
+            key={title}
+            path={path}
+            navigate={navigate}
+          />
         ))}
       </View>
     </View>
@@ -93,15 +112,16 @@ const styles = StyleSheet.create({
   },
 });
 
-const Card = ({image, title, subtitle}) => {
+const Card = ({image, title, subtitle, navigate, path}) => {
   return (
-    <View
+    <TouchableOpacity
       style={{
         width: width * 0.42,
         borderRadius: 13,
         backgroundColor: COLORS.white,
         padding: 18,
-      }}>
+      }}
+      onPress={() => path && navigate(path)}>
       <Image source={image} style={{objectFit: 'contain'}} />
       <Text style={{marginVertical: 9, color: COLORS.black, fontSize: 12}}>
         {title}
@@ -109,7 +129,7 @@ const Card = ({image, title, subtitle}) => {
       <Text style={{marginBottom: 9, color: COLORS.black, fontSize: 9}}>
         {subtitle}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

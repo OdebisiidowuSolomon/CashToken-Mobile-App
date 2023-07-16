@@ -138,8 +138,8 @@ const Invitee = ({active}) => {
 const InviteeItem = ({Ltext, Rtext}) => {
   return (
     <View style={{flexDirection: 'row', marginTop: 5}}>
-      <Text>{Ltext}:</Text>
-      <Text style={{marginLeft: 7}}>{Rtext}</Text>
+      <Text style={{color: COLORS.text}}>{Ltext}:</Text>
+      <Text style={{marginLeft: 7, color: COLORS.text}}>{Rtext}</Text>
     </View>
   );
 };

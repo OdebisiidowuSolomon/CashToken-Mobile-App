@@ -35,14 +35,14 @@ const TransferReward = ({navigation, route}) => {
       <HeaderText text={'Which wallet do you want to transfer from?'} />
       <InputOption
         value={source?.name || 'Choose source'}
-        textStyle={{color: source?.name && COLORS.black}}
+        textStyle={{color: source?.name ? COLORS.text: COLORS.default}}
         onPress={() => walletAndriodPromptRef.current.setVisible(true)}
       />
 
       <HeaderText text={'Choose Destination'} />
       <InputOption
         value={des?.name || 'Select'}
-        textStyle={{color: des?.name && COLORS.black}}
+        textStyle={{color: des?.name ? COLORS.text: COLORS.default}}
         onPress={() => DesAndriodPromptRef.current.setVisible(true)}
       />
 

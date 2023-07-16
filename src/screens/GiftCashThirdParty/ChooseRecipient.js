@@ -2,7 +2,7 @@
 /* eslint-disable react-native/no-inline-styles */
 // ChooseRecipient.js
 
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -21,9 +21,12 @@ import CustomText from '../../components/CustomText';
 import HeaderText from '../../components/HeaderText';
 import TabUI from '../../components/CustomTab';
 import Modal from '../../components/Modal';
+import {useAgentStore} from '../../store/AgentStore';
 
 const ChooseRecipient = ({navigation: {navigate}, route}) => {
   const [checked, setChecked] = useState(false);
+  const productName = useAgentStore(state => state.productName);
+
   const modalRef = useRef();
 
   const requestContactPermission = async () => {
@@ -137,8 +140,8 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
         <CustomText text={'Contacts'} />
         <SelectableCard
           image={require('../../images/contacts.png')}
-          title={'Gift Cashtoken to your contacts'}
-          subtitle={'Find contacts to gift CashToken'}
+          title={`Gift ${productName || 'Cashtoken'} to your contacts`}
+          subtitle={`Find contacts to gift ${productName || 'Cashtoken'}`}
           onPress={() => {
             modalRef.current.setVisible(true);
           }}
@@ -147,7 +150,7 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
         <CustomText text={'QR Code'} />
         <SelectableCard
           image={require('../../images/qr_code_scanner.png')}
-          title={'Gift Cashtoken using QR Code'}
+          title={`Gift ${productName || 'Cashtoken'} using QR Code`}
           subtitle={'Scan your recipients QR to gift '}
           onPress={() => {}}
         />
@@ -180,7 +183,8 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
             fontWeight: '400',
             color: COLORS.secondaryText,
           }}>
-          You will be able to view all your contacts on the CashToken platform
+          You will be able to view all your contacts on the{' '}
+          {productName || 'Cashtoken'} platform
         </Text>
         <View
           style={{flexDirection: 'row', alignItems: 'center', marginTop: 7}}>

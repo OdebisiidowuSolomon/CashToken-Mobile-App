@@ -70,8 +70,10 @@ const ElectricityPurchase = ({navigation: {navigate}, route}) => {
             backgroundColor: COLORS.dividers,
             paddingHorizontal: 11,
             borderRadius: 5,
+            color: COLORS.text,
           }}
           placeholder="Enter Meter Number"
+          placeholderTextColor={COLORS.default}
         />
       </View>
 
@@ -92,10 +94,7 @@ const ElectricityPurchase = ({navigation: {navigate}, route}) => {
       <View style={{marginTop: 10}}>
         <HeaderText text={'Enter Amount'} />
         <AmountInput />
-        <Button
-          text={'Proceed'}
-          onPress={() => navigate('Summary')}
-        />
+        <Button text={'Proceed'} onPress={() => navigate('Summary')} />
       </View>
 
       <AndriodPrompt

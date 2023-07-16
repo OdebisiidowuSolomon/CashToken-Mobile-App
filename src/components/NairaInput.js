@@ -26,6 +26,7 @@ const NairaInput = ({amount}) => {
         style={{flex: 1, color: COLORS.black}}
         keyboardType="number-pad"
         placeholder="Amount"
+        placeholderTextColor={COLORS.default}
         value={amount ? amount : null}
         editable={amount ? false : true}
       />

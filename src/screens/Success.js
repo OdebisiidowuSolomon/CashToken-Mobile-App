@@ -5,11 +5,31 @@ import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {COLORS} from '../libs/Constants';
 import Button from '../components/Button';
+import {useResultStore} from '../store/resultStore';
+import {useAgentStore} from '../store/AgentStore';
 
-const Success = ({route}) => {
+const Success = ({route, navigation: {navigate}}) => {
+  const {successStore, resetSuccessStore} = useResultStore();
+  const {resetAgentStore} = useAgentStore();
+
+  const {mode} = useAgentStore();
+
+  const resetState = () => {
+    if (mode === 'Home') {
+      navigate('Home');
+    } else if (mode === 'Agent') {
+      resetSuccessStore();
+      resetAgentStore();
+      navigate('Agent');
+    }
+  };
+
   return (
     <View style={styles.screen}>
-      <Image source={require('../images/success-1.png')} style={{marginTop:40, marginBottom:20}} />
+      <Image
+        source={require('../images/success-1.png')}
+        style={{marginTop: 40, marginBottom: 20}}
+      />
       <Text style={{fontSize: 22, color: COLORS.black, marginBottom: 15}}>
         Successful!
       </Text>
@@ -20,10 +40,9 @@ const Success = ({route}) => {
           color: COLORS.black,
           fontSize: 14,
         }}>
-        You have successfully gifted Cashtokens to yourself. Click the button
-        below to view your Cashtoken balance
+        {successStore.msg}
       </Text>
-      <Button text={'View CashToken Balance'} />
+      <Button text={successStore.btnText} onPress={resetState} />
     </View>
   );
 };

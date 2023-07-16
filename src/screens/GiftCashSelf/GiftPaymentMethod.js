@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 // GiftPaymentMethod.js
 
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, forwardRef} from 'react';
 import {
   StyleSheet,
   Text,
@@ -170,7 +170,7 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
             <View style={{flexDirection: 'row', marginTop: 5}}>
               <Text>Pay:</Text>
               <Text style={{color: COLORS.black, marginLeft: 5}}>
-                NGN 5000.00
+                Pay: NGN 5000.00
               </Text>
             </View>
           </View>
@@ -263,6 +263,7 @@ const GiftPaymentMethod = ({navigation: {navigate}, route}) => {
           onPress={() => modalRef.current.setVisible(true)}
         />
       </View>
+
     </View>
   );
 };
