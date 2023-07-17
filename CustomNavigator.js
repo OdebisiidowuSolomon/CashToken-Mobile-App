@@ -53,10 +53,12 @@ import TransferReward from './src/screens/TransferReward/TransferRewardIndex';
 import Settings from './src/screens/Settings/SettingsIndex';
 import ChangePassword from './src/screens/Settings/ChangePassword';
 import AgentScreen from './src/screens/Agent/AgentScreen';
+import {useAgentStore} from './src/store/AgentStore';
 
 const Tab = createBottomTabNavigator();
 
 const FirstScreenNavigator = () => {
+  const {setMode} = useAgentStore();
   return (
     <Tab.Navigator
       inactiveColor="#ccc"
@@ -88,6 +90,9 @@ const FirstScreenNavigator = () => {
         }}
         name="HomeNavigator"
         component={HomeScreen}
+        listeners={p => {
+          setMode('Home');
+        }}
         // component={InnerScreenNavigator}
       />
       <Tab.Screen
@@ -108,6 +113,9 @@ const FirstScreenNavigator = () => {
         }}
         name="Wallet"
         component={WalletHomeScreen}
+        listeners={p => {
+          setMode('Home');
+        }}
       />
       <Tab.Screen
         options={{
@@ -127,6 +135,9 @@ const FirstScreenNavigator = () => {
         }}
         name="Utilities"
         component={Utilities}
+        listeners={p => {
+          setMode('Home');
+        }}
       />
       <Tab.Screen
         options={{
@@ -146,6 +157,9 @@ const FirstScreenNavigator = () => {
         }}
         name="Agent"
         component={AgentScreen}
+        listeners={p => {
+          setMode('Agent');
+        }}
       />
       <Tab.Screen
         options={{

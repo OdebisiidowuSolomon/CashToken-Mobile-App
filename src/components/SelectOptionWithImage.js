@@ -20,7 +20,7 @@ const InputOptionWithIcon = ({onPress, image, value}) => {
       <Text style={{flex: 0.8, paddingLeft: 8, color: COLORS.black}}>
         {value}
       </Text>
-      <Icon name="chevron-right" size={29} style={{flex: 0.1}} />
+      <Icon name="chevron-right" size={29} style={{flex: 0.1,color:COLORS.text}} />
     </TouchableOpacity>
   );
 };

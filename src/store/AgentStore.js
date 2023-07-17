@@ -8,7 +8,7 @@ const flow = {
     'Confirm N2,000 deduced from your sales wallet for airtime purchase',
   successMessage:
     'You have successfully gifted Eko Tokens to yourself. Click the button below to view your Sales Wallet balance',
-  BTNsuccessMessage: 'View Sales Wallet Balance',
+  BTNsuccessMessage: 'View CashToken Balance',
 };
 
 const paymentReview = {amount: null, intent: ''};

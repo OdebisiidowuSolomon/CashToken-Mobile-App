@@ -22,6 +22,7 @@ import {Checkbox} from 'react-native-paper';
 import ConfirmationModal from '../../components/confirmationModal';
 import AmountInput from '../../components/AmountInput';
 import {useAgentStore} from '../../store/AgentStore';
+import MobileNumberInput from '../../components/MobileNumberInput';
 
 const NetworkProviderData = [
   {id: 1, img: require('../../images/Mtn_logo.png')},
@@ -66,47 +67,7 @@ const AirtimePurchase = ({navigation, route}) => {
   return (
     <View style={styles.screen}>
       <HeaderText text={'Mobile Number'} />
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          marginBottom: 10,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            backgroundColor: COLORS.lightBorderColor,
-            alignItems: 'center',
-            paddingHorizontal: 10,
-            borderRadius: 4,
-            flex: 0.9,
-          }}>
-          <Text
-            style={{
-              borderRightWidth: 1,
-              borderRightColor: COLORS.black,
-              paddingRight: 5,
-              color: COLORS.default,
-            }}>
-            +234
-          </Text>
-          <TextInput
-            style={{flex: 1, color: COLORS.black}}
-            keyboardType="number-pad"
-          />
-        </View>
-        <TouchableOpacity
-          style={{
-            backgroundColor: COLORS.gold,
-            flex: 0.1,
-            marginLeft: 7,
-            padding: 11,
-            borderRadius: 5,
-          }}
-          onPress={() => navigate('GiftThirdPartyContacts')}>
-          <Image source={require('../../images/contacts.png')} />
-        </TouchableOpacity>
-      </View>
+      <MobileNumberInput navigate={navigate} />
 
       <HeaderText text={'Select Network Provider'} />
       <View style={{flexDirection: 'row', marginBottom: 10}}>

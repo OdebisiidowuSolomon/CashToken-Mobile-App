@@ -19,6 +19,7 @@ import AmountInput from '../../components/AmountInput';
 import Button from '../../components/Button';
 import AndriodPrompt from '../../components/AndriodPrompt';
 import AndroidDataList from '../../components/androidDataList';
+import SelectOptionWithImage from '../../components/SelectOptionWithImage';
 
 const packageArray = ['Prepaid', 'Post Paid'];
 
@@ -42,27 +43,11 @@ const ElectricityPurchase = ({navigation: {navigate}, route}) => {
   return (
     <View style={styles.screen}>
       <HeaderText text={'Electricity Provider'} />
-      <TouchableOpacity
-        onPress={() => {
-          andriodPromptRef.current.setVisible(true);
-        }}
-        style={{
-          flexDirection: 'row',
-          backgroundColor: COLORS.dividers,
-          padding: 11,
-          borderRadius: 6,
-          alignItems: 'center',
-          marginBottom: 10,
-        }}>
-        <Image
-          source={require('../../images/Ikeja.png')}
-          style={{flex: 0.1, objectFit: 'contain'}}
-        />
-        <Text style={{flex: 0.8, paddingLeft: 8, color: COLORS.black}}>
-          {electricityProvider.name || 'Ikeja Disco'}
-        </Text>
-        <Icon name="chevron-right" size={29} style={{flex: 0.1}} />
-      </TouchableOpacity>
+      <SelectOptionWithImage
+        image={require('../../images/Ikeja.png')}
+        onPress={() => andriodPromptRef.current.setVisible(true)}
+        value={electricityProvider.name || 'Ikeja Disco'}
+      />
       <View style={{marginTop: 10}}>
         <HeaderText text={'Meter Number'} />
         <TextInput

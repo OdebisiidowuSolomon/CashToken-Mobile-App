@@ -109,6 +109,7 @@ const BankList = ({navigation, route}) => {
                     backgroundColor: COLORS.lightBorderColor,
                     paddingVertical: 7,
                     paddingHorizontal: 18,
+                    color:COLORS.text
                   }}>
                   {item}
                 </Text>

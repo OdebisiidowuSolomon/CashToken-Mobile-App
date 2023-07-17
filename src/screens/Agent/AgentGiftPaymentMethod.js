@@ -42,7 +42,7 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
         onValueChange={e => {
           if (flow.name === 'AgentCable') {
             return;
-          } else if (!productName || flow.name !== 'AgentCable') {
+          } else if (!productName) {
             setTimeout(() => {
               navigate('ReviewPayment', {msg: e});
             }, 200);
@@ -53,7 +53,11 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
         <HeaderText text={'How will you like to pay?'} />
         <PackageSelectionItem
           image={require('../../images/account_balance_wallet.png')}
-          title={'My Sales Wallet'}
+          title={
+            flow.name === 'AgentElectricity' || flow.name === 'AgentCable'
+              ? 'My Reward Wallet'
+              : 'My Sales Wallet'
+          }
           subtitle={'7,000'}
           subtitleStyle={{fontWeight: '500'}}
         />
@@ -75,17 +79,16 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
         )}
       </RadioButton.Group>
 
-      {productName ||
-        (flow.name === 'AgentCable' && (
-          <PaymentProcessModal
-            modalRef={modalRef}
-            confirmationRef={confirmationRef}
-            setSuccessBtnMessage={setSuccessBtnMessage}
-            setSuccessMessage={setSuccessMessage}
-            navigate={navigate}
-            productName={productName}
-          />
-        ))}
+      {(productName || flow.name === 'AgentCable') && (
+        <PaymentProcessModal
+          modalRef={modalRef}
+          confirmationRef={confirmationRef}
+          setSuccessBtnMessage={setSuccessBtnMessage}
+          setSuccessMessage={setSuccessMessage}
+          navigate={navigate}
+          productName={productName}
+        />
+      )}
     </View>
   );
 };

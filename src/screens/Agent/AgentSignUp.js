@@ -3,7 +3,15 @@
 // AgentSignUp.js
 
 import React, {useState, useRef} from 'react';
-import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from 'react-native';
 import HeaderText from '../../components/HeaderText';
 import SelectOption from '../../components/SelectOption';
 import Input from '../../components/Input';
@@ -12,6 +20,7 @@ import Button from '../../components/Button';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AndriodPrompt from '../../components/AndriodPrompt';
 import AndroidDataList from '../../components/androidDataList';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 const states = [
   {name: 'Lagos'},
@@ -43,9 +52,14 @@ const AgentSignUp = ({navigation, route}) => {
   const [previousTab, setPreviousTab] = useState(0);
   const [activeTab, setActiveTab] = useState(1);
 
+  const {navigate} = navigation;
+
   const handleProgress = () => {
     setActiveTab(prev => prev + 1);
     setPreviousTab(prev => prev + 1);
+    if (activeTab === 3) {
+      navigate('Agent');
+    }
   };
 
   return (
@@ -70,7 +84,15 @@ const AgentSignUp = ({navigation, route}) => {
         <Button
           text={'Sign Up'}
           onPress={handleProgress}
-          customStyle={{position: 'absolute', left: 18, right: 18, bottom: 18}}
+          customStyle={{
+            // position: 'absolute',
+            marginTop: height / 2,
+            bottom: 0,
+            // marginTop: 450,
+            // left: 18,
+            // right: 18,
+            // bottom: 18,
+          }}
         />
       ) : (
         <Button text={'Next'} onPress={handleProgress} />

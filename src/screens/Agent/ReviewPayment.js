@@ -36,7 +36,7 @@ const ReviewPayment = ({navigation, route}) => {
         <Text style={{color: COLORS.secondary}}>
           {paymentReview.amount || 'N5,000'}
         </Text>{' '}
-        deduced from your {walletName || 'sales wallet'} for {paymentReview.intent || '5 cashToken'} purchase
+        deducted from your {walletName || 'sales wallet'} for {paymentReview.intent || '5 cashToken'} purchase
       </Text>
       <HeaderText
         text={'Enter your 4 digit pin to continue'}

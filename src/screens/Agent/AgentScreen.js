@@ -125,13 +125,11 @@ const QLinks = [
 export const AgentScreen = ({navigation: {navigate}}) => {
   const user = false;
 
-  const {setMode} = useAgentStore();
+  const {mode} = useAgentStore();
 
   useEffect(() => {
-    setMode('Agent');
-
-    // Remember to reset state
-  }, [setMode]);
+    console.log('Me Agemt', mode);
+  }, [mode]);
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>

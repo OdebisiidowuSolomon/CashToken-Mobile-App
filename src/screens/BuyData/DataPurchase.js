@@ -12,6 +12,7 @@ import NetworkProviderList from '../../components/NetworkProviderList';
 import Icon from 'react-native-vector-icons/Feather';
 import NairaInput from '../../components/NairaInput';
 import Button from '../../components/Button';
+import MobileNumberInput from '../../components/MobileNumberInput';
 
 const DataPurchase = ({navigation: {navigate}, route}) => {
   const [provider, setProvider] = useState();
@@ -28,7 +29,8 @@ const DataPurchase = ({navigation: {navigate}, route}) => {
   return (
     <View style={styles.screen}>
       <HeaderText text={'Mobile Number'} />
-      <PhoneContactInput navigate={navigate} />
+      {/* <PhoneContactInput navigate={navigate} /> */}
+      <MobileNumberInput navigate={navigate} />
 
       <HeaderText text={'Select Network Provider'} />
       <NetworkProviderList provider={provider} setProvider={setProvider} />

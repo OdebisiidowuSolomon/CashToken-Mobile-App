@@ -33,6 +33,7 @@ const Slide = ({
   item: {id, title, subtitle, path, backgroundColor, showEyeIcon = true},
   showEllipse,
   navigate,
+  user,
 }) => {
   const [amount, setAmount] = useState(null);
 
@@ -85,18 +86,34 @@ const Slide = ({
           {amount ? amount : '****'}
         </Text>
       </View>
-      <TouchableOpacity
-        onPress={() => path && navigate(path)}
-        style={{
-          backgroundColor: COLORS.white,
-          padding: 7,
-          borderRadius: 8,
-          color: COLORS.secondaryText,
-        }}>
-        <Text style={{fontSize: 12, color: COLORS.secondaryText}}>
-          {subtitle}
-        </Text>
-      </TouchableOpacity>
+      {id === '1' && user ? (
+        <TouchableOpacity
+          onPress={() => path && navigate(path)}
+          style={{
+            backgroundColor: 'transparent',
+            padding: 7,
+            paddingBottom: 1,
+            borderRadius: 8,
+            borderBottomWidth: 1,
+            borderBottomColor: COLORS.white,
+          }}>
+          <Text style={{fontSize: 12, color: COLORS.white}}>
+            Withdraw Balance
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => path && navigate(path)}
+          style={{
+            backgroundColor: COLORS.white,
+            padding: 7,
+            borderRadius: 8,
+          }}>
+          <Text style={{fontSize: 12, color: COLORS.secondaryText}}>
+            {subtitle}
+          </Text>
+        </TouchableOpacity>
+      )}
       {id === '1' && showEllipse && (
         <>
           <Image
@@ -122,7 +139,7 @@ const Slide = ({
   );
 };
 
-const CustomSlide = ({slides, showEllipse = true, navigate}) => {
+const CustomSlide = ({slides, showEllipse = true, navigate, user}) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 
   const ref = useRef();
@@ -145,7 +162,12 @@ const CustomSlide = ({slides, showEllipse = true, navigate}) => {
         data={slides}
         pagingEnabled
         renderItem={({item}) => (
-          <Slide item={item} showEllipse={showEllipse} navigate={navigate} />
+          <Slide
+            item={item}
+            showEllipse={showEllipse}
+            user={user}
+            navigate={navigate}
+          />
         )}
       />
       <Indicator currentSlideIndex={currentSlideIndex} slides={slides} />

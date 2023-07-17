@@ -22,6 +22,7 @@ import HeaderText from '../../components/HeaderText';
 import TabUI from '../../components/CustomTab';
 import Modal from '../../components/Modal';
 import {useAgentStore} from '../../store/AgentStore';
+import { requestContactPermission } from '../../libs/requestContactPermission';
 
 const ChooseRecipient = ({navigation: {navigate}, route}) => {
   const [checked, setChecked] = useState(false);
@@ -29,51 +30,64 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
 
   const modalRef = useRef();
 
-  const requestContactPermission = async () => {
-    try {
-      const granted = await PermissionsAndroid.requestMultiple(
-        [
-          PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-          PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS,
-        ],
-        {
-          title: 'Contacts Permission',
-          message: 'This app would like to view your contacts.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'OK',
-        },
-      );
-      if (
-        granted['android.permission.READ_CONTACTS'] ===
-        PermissionsAndroid.RESULTS.GRANTED
-      ) {
-        console.log('You can access contact');
-        const jsonValue = await AsyncStorage.getItem('my-key');
-        modalRef.current.setVisible(false);
-        if (JSON.parse(jsonValue)) {
-          navigate('GiftThirdPartyContacts');
-        } else {
-          Contacts.getAll()
-            .then(async contacts => {
-              try {
-                const value = JSON.stringify(contacts);
-                await AsyncStorage.setItem('my-key', value);
-                navigate('GiftThirdPartyContacts');
-              } catch (e) {
-                console.log(e);
-                // saving error
-              }
-            })
-            .catch(e => {
-              console.log(e);
-            });
-        }
-      } else {
-        console.log('Contact permission denied', granted);
-      }
-    } catch (err) {
-      console.warn(err);
+  // const requestContactPermission = async () => {
+  //   try {
+  //     const granted = await PermissionsAndroid.requestMultiple(
+  //       [
+  //         PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+  //         PermissionsAndroid.PERMISSIONS.WRITE_CONTACTS,
+  //       ],
+  //       {
+  //         title: 'Contacts Permission',
+  //         message: 'This app would like to view your contacts.',
+  //         buttonNeutral: 'Ask Me Later',
+  //         buttonNegative: 'Cancel',
+  //         buttonPositive: 'OK',
+  //       },
+  //     );
+  //     if (
+  //       granted['android.permission.READ_CONTACTS'] ===
+  //       PermissionsAndroid.RESULTS.GRANTED
+  //     ) {
+  //       console.log('You can access contact');
+  //       const jsonValue = await AsyncStorage.getItem('my-key');
+  //       modalRef.current.setVisible(false);
+  //       if (JSON.parse(jsonValue)) {
+  //         navigate('GiftThirdPartyContacts');
+  //       } else {
+  //         Contacts.getAll()
+  //           .then(async contacts => {
+  //             try {
+  //               const value = JSON.stringify(contacts);
+  //               await AsyncStorage.setItem('my-key', value);
+  //               navigate('GiftThirdPartyContacts');
+  //             } catch (e) {
+  //               console.log(e);
+  //               // saving error
+  //             }
+  //           })
+  //           .catch(e => {
+  //             console.log(e);
+  //           });
+  //       }
+  //     } else {
+  //       console.log('Contact permission denied', granted);
+  //     }
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
+
+  const handleContactSelect = ({_modalRef, _navigate}) => {
+    requestContactPermission({modalRef: _modalRef, navigate: _navigate});
+  };
+
+  const handleContactsRead = async ({_modalRef, _navigate}) => {
+    const jsonValue = await AsyncStorage.getItem('my-key');
+    if (jsonValue) {
+      requestContactPermission({modalRef: _modalRef, navigate: _navigate});
+    } else if (!jsonValue) {
+      modalRef.current.setVisible(true);
     }
   };
 
@@ -143,7 +157,8 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
           title={`Gift ${productName || 'Cashtoken'} to your contacts`}
           subtitle={`Find contacts to gift ${productName || 'Cashtoken'}`}
           onPress={() => {
-            modalRef.current.setVisible(true);
+            handleContactsRead({_modalRef: modalRef, _navigate: navigate});
+            // modalRef.current.setVisible(true);
           }}
         />
 
@@ -198,7 +213,12 @@ const ChooseRecipient = ({navigation: {navigate}, route}) => {
             <Text style={{color: COLORS.secondary}}> Privacy Policy</Text>
           </Text>
         </View>
-        <Button text={'Access'} onPress={requestContactPermission} />
+        <Button
+          text={'Access'}
+          onPress={() =>
+            handleContactSelect({_modalRef: modalRef, _navigate: navigate})
+          }
+        />
       </Modal>
     </View>
   );

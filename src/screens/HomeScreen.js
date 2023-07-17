@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import React,{useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -16,7 +16,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import {COLORS} from '../libs/Constants';
 import CustomSlide from '../components/customSlide';
 import QuickLink from '../components/QuickLink';
-import { useAgentStore } from '../store/AgentStore';
+import {useAgentStore} from '../store/AgentStore';
 
 const {width, height} = Dimensions.get('window');
 
@@ -81,15 +81,10 @@ const QLinks = [
 ];
 
 export const HomeScreen = ({navigation: {navigate}}) => {
-  const user = false;
+  const user = true;
 
-  const {setMode, mode} = useAgentStore();
 
-  useEffect(() => {
-    setMode('Home');
-  }, [setMode]);
-
-  console.log(mode);
+  // console.log(mode,'mode');
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
@@ -189,7 +184,12 @@ const HeaderComponent = function HeaderComponent({user, navigate}) {
         </Text>
       </View>
       <View>
-        <CustomSlide navigate={navigate} slides={slides} showEllipse={false} />
+        <CustomSlide
+          navigate={navigate}
+          slides={slides}
+          user={user}
+          showEllipse={false}
+        />
       </View>
       <View style={{marginTop: 10, paddingHorizontal: 18}}>
         <Text style={{fontSize: 15, fontWeight: '500', color: COLORS.text}}>

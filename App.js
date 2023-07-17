@@ -1155,13 +1155,13 @@ const App = () => {
                     <OctIcon
                       name={'arrow-left'}
                       size={25}
-                      style={{marginTop: 4.5, color: COLORS.secondary}}
+                      style={{marginTop: 4.5, color: COLORS.black}}
                     />
                     <Text
                       style={{
                         marginLeft: 10,
                         fontSize: 16,
-                        color: COLORS.secondary,
+                        color: COLORS.black,
                         textAlign: 'center',
                       }}>
                       Back

@@ -36,7 +36,7 @@ const AgentLogin = ({navigation, route}) => {
 
       <Button text={'Log In'} />
       <View
-        style={{flexDirection: 'row', marginTop: 10, justifyContent: 'center'}}>
+        style={{flexDirection: 'row', marginTop: 15, justifyContent: 'center'}}>
         <Text
           style={{
             color: COLORS.text,

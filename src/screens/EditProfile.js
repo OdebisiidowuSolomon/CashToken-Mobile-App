@@ -50,7 +50,8 @@ const EditProfile = ({navigation, route}) => {
               borderWidth: 1,
               borderColor: isFNameFocused ? COLORS.secondary : 'transparent',
             },
-          ]}>
+          ]}
+          >
           <TextInput
             style={[styles.textInput, {color: COLORS.black}]}
             onFocus={() => setIsFNameFocused(true)}
@@ -58,14 +59,18 @@ const EditProfile = ({navigation, route}) => {
             value={FName}
             onChangeText={setFName}
           />
-          {!!FName.trim().length && isFNameFocused && (
+          {!!FName.trim().length && (
             <TouchableOpacity
               style={styles.closeButtonParent}
               onPress={() => setFName('')}>
               <Icon
                 name={'close-outline'}
                 size={20}
-                style={{backgroundColor: COLORS.dividers, borderRadius: 50}}
+                style={{
+                  backgroundColor: COLORS.dividers,
+                  color: COLORS.text,
+                  borderRadius: 50,
+                }}
               />
             </TouchableOpacity>
           )}
@@ -89,14 +94,14 @@ const EditProfile = ({navigation, route}) => {
             value={LName}
             onChangeText={setLName}
           />
-          {!!LName.trim().length && isLNameFocused && (
+          {!!LName.trim().length && (
             <TouchableOpacity
               style={styles.closeButtonParent}
               onPress={() => setLName('')}>
               <Icon
                 name={'close-outline'}
                 size={20}
-                style={{backgroundColor: COLORS.dividers, borderRadius: 50}}
+                style={{backgroundColor: COLORS.dividers,color:COLORS.text ,borderRadius: 50}}
               />
             </TouchableOpacity>
           )}
@@ -140,5 +145,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 20,
+    // padding: 10,
   },
 });

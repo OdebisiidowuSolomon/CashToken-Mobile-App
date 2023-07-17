@@ -32,6 +32,7 @@ const MoreIndex = ({navigation: {navigate}, route}) => {
       <SelectableCard
         image={require('../../images/local_convenience_store.png')}
         title={'Transactions History'}
+        onPress={() => navigate('TransactionHistory')}
       />
       <SelectableCard
         image={require('../../images/CashToken-Logo-2.png')}
@@ -40,6 +41,7 @@ const MoreIndex = ({navigation: {navigate}, route}) => {
       <SelectableCard
         image={require('../../images/group.png')}
         title={'Refer a Friend'}
+        onPress={() => navigate('ReferralIndex')}
       />
       <SelectableCard
         image={require('../../images/Vector.png')}
