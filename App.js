@@ -1213,7 +1213,7 @@ const App = () => {
           options={e => ({
             title: '',
             headerShadowVisible: false,
-            headerStyle: {backgroundColor: COLORS.siteBackground},
+            headerStyle: {backgroundColor: COLORS.white},
             headerTintColor: COLORS.secondary,
             headerLeft: ({tintColor}) => {
               return (
@@ -1229,12 +1229,12 @@ const App = () => {
                     />
                     <Text
                       style={{
-                        marginLeft: 10,
-                        fontSize: 22,
-                        color: COLORS.secondary,
+                        marginLeft: 20,
+                        fontSize: 20,
+                        color: COLORS.black,
                         textAlign: 'center',
                       }}>
-                      Back
+                      Review Payment
                     </Text>
                   </View>
                 </TouchableOpacity>

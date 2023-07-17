@@ -18,10 +18,10 @@ import HeaderText from '../../components/HeaderText';
 import {COLORS} from '../../libs/Constants';
 import Button from '../../components/Button';
 import AndriodPrompt from '../../components/AndriodPrompt';
-import SelectableCard from '../../components/SelectableCard';
 import {Checkbox} from 'react-native-paper';
 import ConfirmationModal from '../../components/confirmationModal';
 import AmountInput from '../../components/AmountInput';
+import {useAgentStore} from '../../store/AgentStore';
 
 const NetworkProviderData = [
   {id: 1, img: require('../../images/Mtn_logo.png')},
@@ -35,6 +35,8 @@ const width = Dimensions.get('screen').width;
 const AirtimePurchase = ({navigation, route}) => {
   const [provider, setProvider] = useState();
   const [showWithdrawReward, setShowWithdrawReward] = useState(false);
+
+  const {productName, mode} = useAgentStore();
 
   const {navigate} = navigation;
 
@@ -131,7 +133,7 @@ const AirtimePurchase = ({navigation, route}) => {
       </View>
 
       <HeaderText text={'Enter Amount'} />
-        <AmountInput/>
+      <AmountInput />
 
       {showWithdrawReward ? (
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -183,7 +185,9 @@ const AirtimePurchase = ({navigation, route}) => {
         <Button
           text={'Confirm'}
           onPress={() => {
-            navigate('GiftPaymentMethod');
+            navigate(
+              mode === 'Agent' ? 'AgentGiftPaymentMethod' : 'GiftPaymentMethod',
+            );
             andriodPromptRef.current.setVisible(false);
             confirmationModalRef.current.setVisible(false);
           }}

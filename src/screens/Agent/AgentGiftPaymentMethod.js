@@ -26,15 +26,27 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
   const [method, _setMethod] = useState();
 
   const {setSuccessMessage, setSuccessBtnMessage} = useResultStore();
-  const {productName} = useAgentStore();
+  const {productName, flow} = useAgentStore();
 
   const modalRef = useRef();
   const confirmationRef = useRef();
+
+  //   const showTwo = route?.params?.msg === 'ShowTwo';
+  const showTwo = flow.paymentMethod === 3;
+
+  console.log(showTwo, flow);
 
   return (
     <View style={styles.screen}>
       <RadioButton.Group
         onValueChange={e => {
+          if (flow.name === 'AgentCable') {
+            return;
+          } else if (!productName || flow.name !== 'AgentCable') {
+            setTimeout(() => {
+              navigate('ReviewPayment', {msg: e});
+            }, 200);
+          }
           _setMethod(e);
         }}
         value={method}>
@@ -45,8 +57,53 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
           subtitle={'7,000'}
           subtitleStyle={{fontWeight: '500'}}
         />
+        {showTwo && (
+          <>
+            <PackageSelectionItem
+              image={require('../../images/account_balance_wallet.png')}
+              title={'My Commission Wallet'}
+              subtitle={'2,500'}
+              subtitleStyle={{fontWeight: '500'}}
+            />
+            <PackageSelectionItem
+              image={require('../../images/account_balance_wallet.png')}
+              title={'My Incentive Wallet'}
+              subtitle={'2,500'}
+              subtitleStyle={{fontWeight: '500'}}
+            />
+          </>
+        )}
       </RadioButton.Group>
 
+      {productName ||
+        (flow.name === 'AgentCable' && (
+          <PaymentProcessModal
+            modalRef={modalRef}
+            confirmationRef={confirmationRef}
+            setSuccessBtnMessage={setSuccessBtnMessage}
+            setSuccessMessage={setSuccessMessage}
+            navigate={navigate}
+            productName={productName}
+          />
+        ))}
+    </View>
+  );
+};
+
+export default AgentGiftPaymentMethod;
+
+export const PaymentProcessModal = ({
+  modalRef,
+  confirmationRef,
+  setSuccessMessage: setSuccessMessage,
+  setSuccessBtnMessage: setSuccessBtnMessage,
+  productName: productName,
+  navigate: navigate,
+  successMessage,
+  successBtnMessage,
+}) => {
+  return (
+    <>
       <Modal
         ref={modalRef}
         onCancel={() => confirmationRef.current.setVisible(true)}>
@@ -121,9 +178,12 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
           onPress={() => {
             modalRef.current.setVisible(false);
             setSuccessMessage(
-              `You have successfully gifted ${productName} to yourself. Click the button below to view your Sales Wallet balance`,
+              successMessage ||
+                `You have successfully gifted ${productName} to yourself. Click the button below to view your Sales Wallet balance`,
             );
-            setSuccessBtnMessage('View Sales Wallet Balance');
+            setSuccessBtnMessage(
+              successBtnMessage || 'View Sales Wallet Balance',
+            );
             navigate('Success');
           }}
         />
@@ -162,11 +222,9 @@ const AgentGiftPaymentMethod = ({navigation, route}) => {
           onPress={() => modalRef.current.setVisible(true)}
         />
       </View>
-    </View>
+    </>
   );
 };
-
-export default AgentGiftPaymentMethod;
 
 const styles = StyleSheet.create({
   screen: {

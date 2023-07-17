@@ -46,6 +46,11 @@ const QLinks = [
     image: require('../../images/CashToken-Logo-2.png'),
     text: 'Gift CashTokens',
     route: 'GiftThirdPartyChooseRecipient',
+    QLinkFunction: () => ({
+      name: 'AgentCashToken',
+      paymentMethod: 1,
+      BTNsuccessMessage: 'View Balance',
+    }),
   },
   {
     id: 2,
@@ -58,18 +63,33 @@ const QLinks = [
     image: require('../../images/phonelink_ring.png'),
     text: 'Buy Airtime',
     route: 'AirtimePurchase',
+    QLinkFunction: () => ({
+      name: 'AgentAirtime',
+      paymentMethod: 3,
+      BTNsuccessMessage: 'View Balance',
+    }),
   },
   {
     id: 4,
     image: require('../../images/phonelink_ring.png'),
     text: 'Recharge Cable',
     route: 'CablePurchase',
+    QLinkFunction: () => ({
+      name: 'AgentCable',
+      paymentMethod: 1,
+      BTNsuccessMessage: 'View CashToken Balance',
+    }),
   },
   {
     id: 5,
     image: require('../../images/buyData.png'),
     text: 'Buy Data',
     route: 'DataPurchase',
+    QLinkFunction: () => ({
+      name: 'AgentData',
+      paymentMethod: 1,
+      BTNsuccessMessage: 'View Sales Wallet Balance',
+    }),
   },
   {
     id: 6,
@@ -81,18 +101,24 @@ const QLinks = [
     id: 8,
     image: require('../../images/Agent_icon.png'),
     text: 'Become a Super Agent',
+    route: 'AgentLogin',
   },
   {
     id: 9,
     image: require('../../images/quiz.png'),
     text: 'Education Products',
-    route: 'ElectricityPurchase',
+    route: '',
   },
   {
     id: 10,
     image: require('../../images/electrical_services.png'),
     text: 'Buy Power',
     route: 'ElectricityPurchase',
+    QLinkFunction: () => ({
+      name: 'AgentElectricity',
+      paymentMethod: 1,
+      BTNsuccessMessage: 'View Sales Token Balance',
+    }),
   },
 ];
 
@@ -103,6 +129,8 @@ export const AgentScreen = ({navigation: {navigate}}) => {
 
   useEffect(() => {
     setMode('Agent');
+
+    // Remember to reset state
   }, [setMode]);
 
   return (

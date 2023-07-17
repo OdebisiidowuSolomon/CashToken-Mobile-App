@@ -26,12 +26,13 @@ const FlagData = [
 
 const Quantity = ({navigation: {navigate}, route}) => {
   const [label, setLabel] = useState('NGN');
-  const {productName, mode} = useAgentStore(state => state);
+  const {productName, mode, flow} = useAgentStore(state => state);
 
   const handleLabelChange = text => {
     androidPromptRef.current.setVisible(false);
     setLabel(text);
   };
+  console.log(mode);
 
   const androidPromptRef = useRef();
 
@@ -98,17 +99,18 @@ const Quantity = ({navigation: {navigate}, route}) => {
         </View>
       </View>
 
-      {productName ? (
-        <Button
-          text={'Next'}
-          onPress={() => navigate('AgentGiftPaymentMethod')}
-        />
-      ) : mode === 'Agent' ? (
+      {productName || flow.name === 'AgentCashToken' ? (
         <Button
           text={'Next'}
           onPress={() => navigate('AgentGiftPaymentMethod')}
         />
       ) : (
+        // : mode === 'Agent' ? (
+        //   <Button
+        //     text={'Next'}
+        //     onPress={() => navigate('AgentGiftPaymentMethod')}
+        //   />
+        // )
         <Button text={'Next'} onPress={() => navigate('GiftPaymentMethod')} />
       )}
 

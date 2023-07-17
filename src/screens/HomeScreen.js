@@ -83,11 +83,13 @@ const QLinks = [
 export const HomeScreen = ({navigation: {navigate}}) => {
   const user = false;
 
-  const {setMode} = useAgentStore();
+  const {setMode, mode} = useAgentStore();
 
   useEffect(() => {
     setMode('Home');
   }, [setMode]);
+
+  console.log(mode);
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>

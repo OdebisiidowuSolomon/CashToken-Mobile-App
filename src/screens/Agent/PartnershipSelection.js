@@ -7,13 +7,14 @@ import {StyleSheet, Image, Text, View} from 'react-native';
 import HeaderText from '../../components/HeaderText';
 import InputOption from '../../components/SelectOption';
 import {COLORS} from '../../libs/Constants';
-import InputOptionWithIcon from '../../components/SelectOptionWithImage';
 import {RadioButton} from 'react-native-paper';
 import {useAgentStore} from '../../store/AgentStore';
 
 const PartnershipSelection = ({navigation, route}) => {
   const [showProducts, setShowProducts] = useState(false);
   const {navigate} = navigation;
+
+  //   I already set Agent flow in the PackageSelection Component
 
   return (
     <View style={styles.screen}>
@@ -44,6 +45,11 @@ const PackageSelection = ({navigate}) => {
   const handleSelect = e => {
     setValue(e);
     AgentStore.setProductName(e);
+    AgentStore.setFlow({
+      name: 'Partner',
+      paymentMethod: 1,
+      BTNsuccessMessage: 'View Sales Wallet Balance',
+    });
     navigate('GiftThirdPartyChooseRecipient');
   };
 

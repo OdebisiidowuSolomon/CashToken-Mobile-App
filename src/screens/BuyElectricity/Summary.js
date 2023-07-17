@@ -6,8 +6,10 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '../../libs/Constants';
 import Button from '../../components/Button';
+import {useAgentStore} from '../../store/AgentStore';
 
 const Summary = ({navigation: {navigate}, route}) => {
+  const {mode, flow, setPaymentReview} = useAgentStore();
   return (
     <View style={styles.screen}>
       <Text style={{textAlign: 'center', color: COLORS.text}}>
@@ -76,7 +78,23 @@ const Summary = ({navigation: {navigate}, route}) => {
       </View>
       <Button
         text={'Proceed to Pay'}
-        onPress={() => navigate('GiftPaymentMethod')}
+        onPress={() => {
+          if (mode === 'Agent' && flow.name === 'AgentData') {
+            setPaymentReview({amount: 'N2,000', intent: 'Data bundle'});
+          }
+
+          if (mode === 'Agent' && flow.name === 'AgentElectricity') {
+            setPaymentReview({
+              amount: 'N2,000',
+              intent: 'electricity purchase',
+            });
+          }
+
+          console.log(mode, flow);
+          navigate(
+            mode === 'Agent' ? 'AgentGiftPaymentMethod' : 'GiftPaymentMethod',
+          );
+        }}
       />
     </View>
   );

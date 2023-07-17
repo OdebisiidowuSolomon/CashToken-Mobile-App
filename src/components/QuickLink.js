@@ -1,17 +1,25 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import {View, Text, Dimensions, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {COLORS} from '../libs/Constants';
+import {useAgentStore} from '../store/AgentStore';
 
 const {width, height} = Dimensions.get('screen');
 
 const QuickLink = ({item, navigate, route}) => {
+  const {setFlow, flow} = useAgentStore();
+
   const handlePress = () => {
     if (item.route) {
       navigate(item.route);
     } else {
       return;
+    }
+
+    if (item.QLinkFunction) {
+      setFlow(item.QLinkFunction());
+      console.log(flow);
     }
   };
 
@@ -44,7 +52,13 @@ const QuickLink = ({item, navigate, route}) => {
             }}
           />
         </View>
-        <Text style={{fontSize: 11, textAlign: 'center', maxWidth: '77%', color:COLORS.secondaryText}}>
+        <Text
+          style={{
+            fontSize: 11,
+            textAlign: 'center',
+            maxWidth: '77%',
+            color: COLORS.secondaryText,
+          }}>
           {item?.text}
         </Text>
       </View>

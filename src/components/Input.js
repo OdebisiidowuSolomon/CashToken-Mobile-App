@@ -5,7 +5,6 @@ import {COLORS} from '../libs/Constants';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Input = ({placeholder, onChangeText, value, customStyle, ...props}) => {
-  console.log(props);
   return (
     <TextInput
       style={[

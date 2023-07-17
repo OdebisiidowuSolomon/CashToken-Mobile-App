@@ -3,7 +3,7 @@
 // AgentSignUp.js
 
 import React, {useState, useRef} from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
 import HeaderText from '../../components/HeaderText';
 import SelectOption from '../../components/SelectOption';
 import Input from '../../components/Input';
@@ -49,7 +49,7 @@ const AgentSignUp = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.screen}>
+    <ScrollView style={styles.screen}>
       <HeaderText
         text={
           activeTab === 1
@@ -75,7 +75,7 @@ const AgentSignUp = ({navigation, route}) => {
       ) : (
         <Button text={'Next'} onPress={handleProgress} />
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -181,17 +181,23 @@ const TabThree = () => {
   return (
     <View>
       <HeaderText text={'Create a 4 transaction pin'} />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 10,
-        }}>
-        <CustomInput />
-        <CustomInput />
-        <CustomInput />
-        <CustomInput />
-      </View>
+      <CustomPin />
+    </View>
+  );
+};
+
+export const CustomPin = () => {
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+      }}>
+      <CustomInput />
+      <CustomInput />
+      <CustomInput />
+      <CustomInput />
     </View>
   );
 };
